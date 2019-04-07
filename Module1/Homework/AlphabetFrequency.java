@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class AlphabetFrequency {
    private static final int ALPHABET_COUNT = 26;
    
@@ -374,7 +376,23 @@ public class AlphabetFrequency {
    
    @Override
    public String toString() {
-      return " ";
+      String retString = "[";
+      char[] sorted = new char[size];
+      for (int i = 0; i < data.length(); ++i) {
+         if (Character.isLetter(data.charAt(i))) {
+            sorted[i] = data.charAt(i);
+         }
+      }
+      
+      Arrays.sort(sorted);
+      
+      for (int j = 0; j < size - 1; ++j) {
+         retString += sorted[j] + ", ";
+      }
+      
+      retString += sorted[size - 1] + "]";
+      
+      return retString.trim();
    }
    
    public AlphabetFrequency combineWith(AlphabetFrequency other) {
@@ -389,6 +407,6 @@ public class AlphabetFrequency {
    public static void main(String[] args)
    {
       AlphabetFrequency af = new AlphabetFrequency("Bryan12!");
-      System.out.println(af.size());
+      System.out.println(af);
    }
 }
