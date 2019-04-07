@@ -16,7 +16,7 @@ public class ArrayIntList {
    // throws IndexOutOfBounds if index < 0 || >= size + 1
    public void add(int value) {
       // add an element to the end of the ArrayIntList
-      checkIndex(size + 1, value);
+      checkIndex(size + 1, data.length);
       data[size] = value;
       size++;
    }
