@@ -1,3 +1,10 @@
+/*
+   Class: CIS143 
+   Assignment/Week: Lab Week #1
+   Name: Bryan Hyland
+   Date: 6Apr19
+*/
+
 public class ArrayIntList {
    private static final int NOT_FOUND = -1;
    
