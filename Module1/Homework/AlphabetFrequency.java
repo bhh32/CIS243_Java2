@@ -3,12 +3,21 @@ import java.util.Arrays;
 public class AlphabetFrequency {
    private static final int ALPHABET_COUNT = 26;
    
-   private String data;
+   private StringBuilder data;
    private int[] alphabet = new int[ALPHABET_COUNT];
    private int size;
    
    public AlphabetFrequency(String data) {
-      this.data = data;
+      this.data = new StringBuilder(data);
+      for (int c = 0; c < data.length(); ++c) {
+         if (!Character.isLetter(data.charAt(c))) {
+            this.data.setCharAt(c, ' ');
+         }
+      }
+      this.data = new StringBuilder(this.data.toString().replaceAll("\\s", "").toLowerCase());
+      //this.data = this.data.toLowerCase();
+      
+      
       
       for (int i = 0; i < this.data.length(); ++i) {
          if(Character.isLetter(this.data.charAt(i))) {
@@ -118,11 +127,11 @@ public class AlphabetFrequency {
                   alphabet[25]++;
                break;
             }
-            
-            for (int j : alphabet) {
-               size += j;
-            }
          }
+      }
+      
+      for (int j : alphabet) {
+         size += j;
       }
    }
    
@@ -234,11 +243,11 @@ public class AlphabetFrequency {
                case 'z':
                case 'Z':
                   returnInt = alphabet[25];
-               break;
-               default:
-                  throw new IllegalArgumentException("Something other than a letter was passed into get()");
+               break;                  
             }
-
+         }
+         else {
+          throw new IllegalArgumentException("Something other than a letter was passed into get()");
       }
       return returnInt;
    }
@@ -249,164 +258,197 @@ public class AlphabetFrequency {
    
       if (Character.isLetter(letter)) {
          switch(letter) {
-               case 'a':
-               case 'A':
-                  alphabet[0] = value;
+            case 'a':
+            case 'A':
+               alphabet[0] = value;
                break;
-               case 'b':
-               case 'B':
-                  alphabet[1] = value;
+            case 'b':
+            case 'B':
+               alphabet[1] = value;
                break;
-               case 'c':
-               case 'C':
-                  alphabet[2] = value;
+            case 'c':
+            case 'C':
+               alphabet[2] = value;
                break;
-               case 'd':
-               case 'D':
-                  alphabet[3] = value;
+            case 'd':
+            case 'D':
+               alphabet[3] = value;
                break;
-               case 'e':
-               case 'E':
-                  alphabet[4] = value;
+            case 'e':
+            case 'E':
+               alphabet[4] = value;
                break;
-               case 'f':
-               case 'F':
-                  alphabet[5] = value;
+            case 'f':
+            case 'F':
+               alphabet[5] = value;
                break;
-               case 'g':
-               case 'G':
-                  alphabet[6] = value;
+            case 'g':
+            case 'G':
+               alphabet[6] = value;
                break;
-               case 'h':
-               case 'H':
-                  alphabet[7] = value;
+            case 'h':
+            case 'H':
+               alphabet[7] = value;
                break;
-               case 'i':
-               case 'I':
-                  alphabet[8] = value;
+            case 'i':
+            case 'I':
+               alphabet[8] = value;
                break;
-               case 'j':
-               case 'J':
-                  alphabet[9] = value;
+            case 'j':
+            case 'J':
+               alphabet[9] = value;
                break;
-               case 'k':
-               case 'K':
-                  alphabet[10] = value;
+            case 'k':
+            case 'K':
+               alphabet[10] = value;
                break;
-               case 'l':
-               case 'L':
-                  alphabet[11] = value;
+            case 'l':
+            case 'L':
+               alphabet[11] = value;
                break;
-               case 'm':
-               case 'M':
-                  alphabet[12] = value;
+            case 'm':
+            case 'M':
+               alphabet[12] = value;
                break;
-               case 'n':
-               case 'N':
-                  alphabet[13] = value;
+            case 'n':
+            case 'N':
+               alphabet[13] = value;
                break;
-               case 'o':
-               case 'O':
-                  alphabet[14] = value;
+            case 'o':
+            case 'O':
+               alphabet[14] = value;
                break;
-               case 'p':
-               case 'P':
-                  alphabet[15] = value;
+            case 'p':
+            case 'P':
+               alphabet[15] = value;
                break;
-               case 'q':
-               case 'Q':
-                  alphabet[16] = value;
+            case 'q':
+            case 'Q':
+               alphabet[16] = value;
                break;
-               case 'r':
-               case 'R':
-                  alphabet[17] = value;
+            case 'r':
+            case 'R':
+               alphabet[17] = value;
                break;
-               case 's':
-               case 'S':
-                  alphabet[18] = value;
+            case 's':
+            case 'S':
+               alphabet[18] = value;
                break;
-               case 't':
-               case 'T':
-                  alphabet[19] = value;
+            case 't':
+            case 'T':
+               alphabet[19] = value;
                break;
-               case 'u':
-               case 'U':
-                  alphabet[20] = value;
+            case 'u':
+            case 'U':
+               alphabet[20] = value;
                break;
-               case 'v':
-               case 'V':
-                  alphabet[21] = value;
+            case 'v':
+            case 'V':
+               alphabet[21] = value;
                break;
-               case 'w':
-               case 'W':
-                  alphabet[22] = value;
+            case 'w':
+            case 'W':
+               alphabet[22] = value;
                break;
-               case 'x':
-               case 'X':
-                  alphabet[23] = value;
+            case 'x':
+            case 'X':
+               alphabet[23] = value;
                break;
-               case 'y':
-               case 'Y':
-                  alphabet[24] = value;
+            case 'y':
+            case 'Y':
+               alphabet[24] = value;
                break;
-               case 'z':
-               case 'Z':
-                  alphabet[25] = value;
+            case 'z':
+            case 'Z':
+               alphabet[25] = value;
                break;
-               default:
-                  throw new IllegalArgumentException("Something other than a letter was passed into set()");
-            }
+         }
             
-            for (int j : alphabet) {
-               size += j;
-            }
-        }
+       }
+       else {
+             throw new IllegalArgumentException("Something other than a letter was passed into set()");   
+       }
+            
+       // Adds up all of the counts and puts them into size
+       for (int j : alphabet) {
+             size += j;
+       }
    }
    
+   // Returns the size
    public int size() {
       return size;
    }
    
+   // Returns true if the size is 0
    public boolean isEmpty() {
-      if(size == 0)
-         return true;
-         
-      return false;
+      return size < 1;
    }
    
    @Override
    public String toString() {
+      // Create a return String object
       String retString = "[";
-      char[] sorted = new char[size];
+      // Create a char array so that the chars can be sorted
+      char[] sorted = new char[data.length()];
+      
+      // Put each char in the string into the sorting array
       for (int i = 0; i < data.length(); ++i) {
          if (Character.isLetter(data.charAt(i))) {
             sorted[i] = data.charAt(i);
          }
       }
       
+      // Sort the chars
       Arrays.sort(sorted);
       
+      // Add the sorted chars to the return String object
       for (int j = 0; j < size - 1; ++j) {
-         retString += sorted[j] + ", ";
+         retString += sorted[j];
       }
       
+      // Add the last char in the array to the return String object
       retString += sorted[size - 1] + "]";
       
       return retString.trim();
    }
    
    public AlphabetFrequency combineWith(AlphabetFrequency other) {
-      return new AlphabetFrequency("Temp String");
+      // Create a new AlphabetFrequency object with this and other combined
+      AlphabetFrequency temp = new AlphabetFrequency(this.data.toString() + other.data.toString());
+      
+      return temp;
    }
    
    public AlphabetFrequency minus(AlphabetFrequency other) {
-      return new AlphabetFrequency("Temp String");
+      AlphabetFrequency temp = new AlphabetFrequency("TempString");
+      
+      // Reset all counts to 0
+      for (int c : temp.alphabet) {
+         c = 0;
+      }
+      
+      // Reset size to 0
+      temp.size = 0;
+      
+      // Subtract other.alphabet[idx] from this.alphabet[idx]
+      for (int i = 0; i < ALPHABET_COUNT; ++i) {
+         temp.alphabet[i] = this.alphabet[i] - other.alphabet[i];
+         
+         // Return null if the operation resulted in a negative
+         if (temp.alphabet[i] < 0) {
+            return null;
+         }
+      }
+      
+      return temp;
    }
    
    // TEST
    public static void main(String[] args)
    {
-      AlphabetFrequency af = new AlphabetFrequency("Bryan12!");
+      AlphabetFrequency af = new AlphabetFrequency("Bryan  12!");
+      System.out.println(af.size());
       System.out.println(af);
    }
 }
