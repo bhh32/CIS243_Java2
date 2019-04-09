@@ -49,7 +49,8 @@ public class AlphabetFrequency {
    public int get(char letter) {
       // Make sure that the parameter is a letter      
       if (!Character.isLetter(letter)) {
-         throw new IllegalArgumentException("Parameter passed into get() was not a letter!");
+         throw new IllegalArgumentException("Parameter passed "
+            + "into get() was not a letter!");
       }
       
       // Set the letter to a lowercase version
@@ -85,11 +86,11 @@ public class AlphabetFrequency {
             // and populate the array with the letter value - 1 times
             for (int i = 0; i < temp.length; ++i) {
                   temp[i] = letter;
-               }
+            }
                
-               // Set data to a new String object with
-               // temp as the value.
-               data = new String(temp);
+            // Set data to a new String object with
+            // temp as the value.
+            data = new String(temp);
          }
          // If data isn't null...
          else {
@@ -159,7 +160,8 @@ public class AlphabetFrequency {
    
    public AlphabetFrequency combineWith(AlphabetFrequency other) {
       // Create a new AlphabetFrequency object with this and other combined
-      AlphabetFrequency temp = new AlphabetFrequency(this.data.toString() + other.data.toString());
+      AlphabetFrequency temp = new AlphabetFrequency(this.data.toString() 
+         + other.data.toString());
       
       return temp;
    }
@@ -262,6 +264,9 @@ public class AlphabetFrequency {
                   break;
                case 25:
                   temp.data += 'z';
+                  break;
+               default:
+                  System.out.println("Something went wrong in minus()");
                   break;
             }
          }

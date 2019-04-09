@@ -16,7 +16,7 @@
 // static imports let you call the static method directly
 // without using the class name.
 import org.junit.Assert;
-import static org.junit.Assert.*;
+import static org.junit.Assert.*; // Added for assertEquals
 import org.junit.Test;
 import java.util.Scanner;
 
