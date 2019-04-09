@@ -16,13 +16,102 @@
 // static imports let you call the static method directly
 // without using the class name.
 import org.junit.Assert;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.Scanner;
 
 public class AlphabetFrequencyTest {
 
   /************** Add your tests below this comment *******/
-
+   @Test(expected = IllegalArgumentException.class)
+   public void testGetNumberCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.get('2');
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testGetSymbolCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.get('@');
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testGetIntCastToCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.get((char)1);
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testSetNumberCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.set('1', 2);
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testSetSymbolCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.set('!', 5);
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testSetNumberCastAsCharPassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.set((char)12.4f, 0);
+      
+      // Assert
+   }
+   
+   @Test(expected = IllegalArgumentException.class)
+   public void testSetNegativeValuePassedAsArgument() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      
+      // Act
+      af.set('g', -2);
+      
+      // Assert
+   }
+   
+   @Test public void testSetNumberLargerThanSize() {
+      // Arrange
+      AlphabetFrequency af = new AlphabetFrequency("RandomString");
+      int beforeSet = af.size();
+      // Act
+      af.set('g', af.size() + 1);
+      int afterSet = beforeSet + 1;
+      
+      // Assert
+      assertEquals("The size wasn't increased to " + beforeSet + 1, beforeSet + 1, afterSet); 
+   }
+   
 	/************** Add your tests above this comment *******/
 
 	/************** Provided Tests **************/
