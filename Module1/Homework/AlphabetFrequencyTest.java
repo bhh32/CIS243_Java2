@@ -112,6 +112,15 @@ public class AlphabetFrequencyTest {
       assertEquals("The size wasn't increased to " + beforeSet + 1, beforeSet + 1, afterSet); 
    }
    
+   @Test public void testConstructorNull() {
+      AlphabetFrequency af = new AlphabetFrequency(null);
+   }
+   
+   @Test public void testCombineWithNull() {
+      AlphabetFrequency af = new AlphabetFrequency("12a");
+      af.combineWith(null);
+   }
+   
 	/************** Add your tests above this comment *******/
 
 	/************** Provided Tests **************/

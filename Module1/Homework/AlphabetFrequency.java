@@ -159,6 +159,14 @@ public class AlphabetFrequency {
    }
    
    public AlphabetFrequency combineWith(AlphabetFrequency other) {
+      if (other == null) {
+         other = (AlphabetFrequency)other;
+         other = new AlphabetFrequency("");
+      }
+      else if (!(other instanceof AlphabetFrequency)) {
+         throw new IllegalArgumentException();
+      }
+      
       // Create a new AlphabetFrequency object with this and other combined
       AlphabetFrequency temp = new AlphabetFrequency(this.data.toString() 
          + other.data.toString());
@@ -167,6 +175,14 @@ public class AlphabetFrequency {
    }
    
    public AlphabetFrequency minus(AlphabetFrequency other) {
+      if (other == null) {
+         other = (AlphabetFrequency) other;
+         other = new AlphabetFrequency("");
+      }
+      else if (!(other instanceof AlphabetFrequency)) { 
+         throw new IllegalArgumentException();
+      }
+   
       // Create an essentially empty AlphabetFrequency temp object
       AlphabetFrequency temp = new AlphabetFrequency("");
             
