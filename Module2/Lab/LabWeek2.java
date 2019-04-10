@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class LabWeek2 {
-   public static boolean isPalindrome(Stack<Integer> intStack) {
+   /*public static boolean isPalindrome(Stack<Integer> intStack) {
       if (intStack == null || intStack.isEmpty()) {
          return true;
       }
@@ -13,6 +13,33 @@ public class LabWeek2 {
       }
       
       return true;
+   }*/
+   
+   public static boolean isPalindrome(Stack<Integer> intStack) {
+      if (intStack == null || intStack.isEmpty()) {
+         return true;
+      }
+   
+      Stack<Integer> clone = new Stack<Integer>();
+      Stack<Integer> reverse = new Stack<Integer>();
+      Stack<Integer> last = new Stack<Integer>();
+      
+      reverse(intStack, reverse);
+      reverse(reverse, clone);
+      reverse(clone, last);
+      
+      intStack = last;
+      
+      while (!clone.isEmpty()) {
+         if (clone.peek() == reverse.peek()) {
+            clone.pop();
+            reverse.pop();
+         }
+         else {
+            return false;
+         }
+      }
+      return true; 
    }
    
    public static int countCommon(List<Integer> list, List<Integer> list2) {
@@ -28,15 +55,15 @@ public class LabWeek2 {
    
    public static void main(String[] args) {
    
-      /*Stack<Integer> intStack = new Stack<>();
+      Stack<Integer> intStack = new Stack<>();
       Stack<Integer> intStack2 = null;
       
       // Check empty Stack
-      System.out.println(isPalindrome(intStack)); // true
+      //System.out.println(isPalindrome(intStack)); // true
       
       // Check null Stack
-      System.out.println(isPalindrome(intStack2)); // true
-      System.out.println(isPalindrome(null)); // true
+      //System.out.println(isPalindrome(intStack2)); // true
+      //System.out.println(isPalindrome(null)); // true
       
       // Make palindromic
       intStack.push(1);
@@ -53,8 +80,8 @@ public class LabWeek2 {
       
       System.out.println(isPalindrome(intStack)); // true
       System.out.println(isPalindrome(intStack2)); // false
-      */
       
+      /*
       ArrayList<Integer> list = new ArrayList<>();
       ArrayList<Integer> list2 = new ArrayList<>();
       
@@ -62,12 +89,19 @@ public class LabWeek2 {
       add(list2, -5, 15, 2, -1, 7, 15, 36);
       
       System.out.println(countCommon(list, list2));
-      System.out.println(countCommonTheHardWay(list, list2));
+      System.out.println(countCommonTheHardWay(list, list2));*/
    }
    
    public static void add(List<Integer> list, Integer ... nums) {
       for(Integer i : nums) {
          list.add(i);
+      }
+   }
+   
+   public static void reverse(Stack<Integer> from, Stack<Integer> target) {
+      while (!from.isEmpty()) {
+         Integer num = from.pop();
+         target.push(num);
       }
    }
 }
