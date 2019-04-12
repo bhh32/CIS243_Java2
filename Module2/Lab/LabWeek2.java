@@ -1,20 +1,12 @@
+/*
+   Bryan Hyland
+   12Apr19
+   Week 2 Lab
+*/
+
 import java.util.*;
 
 public class LabWeek2 {
-   /*public static boolean isPalindrome(Stack<Integer> intStack) {
-      if (intStack == null || intStack.isEmpty()) {
-         return true;
-      }
-   
-      for (int i = 0, j = intStack.size() - 1; i < intStack.size(); ++i, --j) {
-         if ((int)intStack.get(i) != (int)intStack.get(j)) {
-            return false;
-         }
-      }
-      
-      return true;
-   }*/
-   
    public static boolean isPalindrome(Stack<Integer> intStack) {
       if (intStack == null || intStack.isEmpty()) {
          return true;
@@ -22,14 +14,21 @@ public class LabWeek2 {
    
       Stack<Integer> clone = new Stack<Integer>();
       Stack<Integer> reverse = new Stack<Integer>();
-      Stack<Integer> last = new Stack<Integer>();
+      Stack<Integer> putBack = new Stack<Integer>();
+      Stack<Integer> intStack2 = new Stack<Integer>();
       
-      reverse(intStack, reverse);
-      reverse(reverse, clone);
-      reverse(clone, last);
+      // Put intStack into reverse, putBack, and intStack2
+      reverse(intStack, reverse, putBack, intStack2);
+      // Put putBack into clone in the original order
+      reverse(putBack, clone);
       
-      intStack = last;
+      /* 
+         Put the values back into intStack to make 
+         it seem "unchanged"
+      */
+      reverse(intStack2, intStack);
       
+      // Check the clone elements against the reverse elements
       while (!clone.isEmpty()) {
          if (clone.peek() == reverse.peek()) {
             clone.pop();
@@ -39,6 +38,7 @@ public class LabWeek2 {
             return false;
          }
       }
+      
       return true; 
    }
    
@@ -53,55 +53,18 @@ public class LabWeek2 {
       return beenChecked.size();
    }
    
-   public static void main(String[] args) {
-   
-      Stack<Integer> intStack = new Stack<>();
-      Stack<Integer> intStack2 = null;
-      
-      // Check empty Stack
-      //System.out.println(isPalindrome(intStack)); // true
-      
-      // Check null Stack
-      //System.out.println(isPalindrome(intStack2)); // true
-      //System.out.println(isPalindrome(null)); // true
-      
-      // Make palindromic
-      intStack.push(1);
-      intStack.push(2);
-      intStack.push(1);
-      
-      intStack2 = new Stack<>(); // Set to new Stack<Integer>();
-      
-      // Make non-palindromic
-      intStack2.push(1);
-      intStack2.push(2);
-      intStack2.push(4);
-      intStack2.push(1);
-      
-      System.out.println(isPalindrome(intStack)); // true
-      System.out.println(isPalindrome(intStack2)); // false
-      
-      /*
-      ArrayList<Integer> list = new ArrayList<>();
-      ArrayList<Integer> list2 = new ArrayList<>();
-      
-      add(list, 3, 7, 3, -1, 2, 3, 7, 2, 15, 15);
-      add(list2, -5, 15, 2, -1, 7, 15, 36);
-      
-      System.out.println(countCommon(list, list2));
-      System.out.println(countCommonTheHardWay(list, list2));*/
-   }
-   
-   public static void add(List<Integer> list, Integer ... nums) {
-      for(Integer i : nums) {
-         list.add(i);
+   public static void reverse(Stack<Integer> from, Stack<Integer> target1, Stack<Integer> target2, Stack<Integer> target3) {
+      while (!from.isEmpty()) {
+         Integer num = from.pop();
+         target1.push(num);
+         target2.push(num);
+         target3.push(num);
       }
    }
    
    public static void reverse(Stack<Integer> from, Stack<Integer> target) {
       while (!from.isEmpty()) {
-         Integer num = from.pop();
-         target.push(num);
+         target.push(from.pop());
       }
    }
 }

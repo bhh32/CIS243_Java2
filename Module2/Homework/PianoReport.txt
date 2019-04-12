@@ -1,0 +1,19 @@
+
+    1.) Bryan Hyland
+        CIS143
+        Piano Man (Week 2)
+        12Apr19
+
+    2.) How long in hours did you spend on the assignment?
+
+    3.) What key Java features or Object Oriented concepts did this help you understand (or review, if you already have some programming experience)?
+
+    4.) What resources did you use to solve this? (Textbook, class information, tutors, office hours, websites, other?) Provide URLs to websites if used.
+
+    5.) What vagueness can you identify in the specification or missing checks in the tests provided? What testing or validation did you do to see if your program behaved as expected?
+
+    6.) It is often the case that their checks leave out some case, or that their specifications are not water-tight but open to interpretation. Give this some thought, as identifying the cracks in a specification or set of tests is a key software developer skill.
+
+    7.) What parts of your code could use improvement or disappointed you (what work didn’t you get done, that more time would have enabled you to finish, or what bugs did you not resolve)? Note any remaining questions you may have on the assigned items or the material from the chapter here.
+
+    8.) Which part of your work on this are you the most pleased about?

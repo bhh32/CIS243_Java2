@@ -1,0 +1,468 @@
+Playing note -24 (initially 110.25)
+time 0 sample = 110.25
+time 1 sample = 100.25
+time 2 sample = 90.25
+time 3 sample = 80.25
+Plucking string 'q'
+time 4 sample = 110.25
+time 5 sample = 100.25
+time 6 sample = 90.25
+time 7 sample = 80.25
+making an extra call on tic
+
+Playing note -23 (initially 116.25)
+time 9 sample = 176.5
+time 10 sample = 156.5
+time 11 sample = 136.5
+time 12 sample = 116.5
+Plucking string '2'
+time 13 sample = 136.5
+time 14 sample = 116.5
+time 15 sample = 96.5
+time 16 sample = 86.25
+making an extra call on tic
+
+Playing note -22 (initially 123.25)
+time 18 sample = 189.5
+time 19 sample = 169.5
+time 20 sample = 149.5
+time 21 sample = 129.5
+Plucking string 'w'
+time 22 sample = 149.5
+time 23 sample = 129.5
+time 24 sample = 109.5
+time 25 sample = 93.25
+making an extra call on tic
+
+Playing note -21 (initially 130.25)
+time 27 sample = 203.5
+time 28 sample = 183.5
+time 29 sample = 163.5
+time 30 sample = 143.5
+Plucking string 'e'
+time 31 sample = 163.5
+time 32 sample = 143.5
+time 33 sample = 123.5
+time 34 sample = 103.5
+making an extra call on tic
+
+Playing note -20 (initially 138.25)
+time 36 sample = 218.5
+time 37 sample = 198.5
+time 38 sample = 178.5
+time 39 sample = 158.5
+Plucking string '4'
+time 40 sample = 178.5
+time 41 sample = 158.5
+time 42 sample = 138.5
+time 43 sample = 118.5
+making an extra call on tic
+
+Playing note -19 (initially 146.25)
+time 45 sample = 234.5
+time 46 sample = 214.5
+time 47 sample = 194.5
+time 48 sample = 174.5
+Plucking string 'r'
+time 49 sample = 194.5
+time 50 sample = 174.5
+time 51 sample = 154.5
+time 52 sample = 134.5
+making an extra call on tic
+
+Playing note -18 (initially 155.25)
+time 54 sample = 251.5
+time 55 sample = 231.5
+time 56 sample = 211.5
+time 57 sample = 191.5
+Plucking string '5'
+time 58 sample = 211.5
+time 59 sample = 191.5
+time 60 sample = 171.5
+time 61 sample = 151.5
+making an extra call on tic
+
+Playing note -17 (initially 164.25)
+time 63 sample = 275.75
+time 64 sample = 249.5
+time 65 sample = 229.5
+time 66 sample = 209.5
+Plucking string 't'
+time 67 sample = 229.5
+time 68 sample = 209.5
+time 69 sample = 189.5
+time 70 sample = 169.5
+making an extra call on tic
+
+Playing note -16 (initially 174.25)
+time 72 sample = 303.75
+time 73 sample = 273.75
+time 74 sample = 248.5
+time 75 sample = 228.5
+Plucking string 'y'
+time 76 sample = 248.5
+time 77 sample = 228.5
+time 78 sample = 208.5
+time 79 sample = 188.5
+making an extra call on tic
+
+Playing note -15 (initially 184.25)
+time 81 sample = 332.75
+time 82 sample = 302.75
+time 83 sample = 272.75
+time 84 sample = 248.5
+Plucking string '7'
+time 85 sample = 268.5
+time 86 sample = 248.5
+time 87 sample = 228.5
+time 88 sample = 208.5
+making an extra call on tic
+
+Playing note -14 (initially 195.25)
+time 90 sample = 363.75
+time 91 sample = 333.75
+time 92 sample = 303.75
+time 93 sample = 273.75
+Plucking string 'u'
+time 94 sample = 289.5
+time 95 sample = 269.5
+time 96 sample = 249.5
+time 97 sample = 229.5
+making an extra call on tic
+
+Playing note -13 (initially 207.25)
+time 99 sample = 396.75
+time 100 sample = 366.75
+time 101 sample = 336.75
+time 102 sample = 306.75
+Plucking string '8'
+time 103 sample = 316.75
+time 104 sample = 292.5
+time 105 sample = 272.5
+time 106 sample = 252.5
+making an extra call on tic
+
+Playing note -12 (initially 220.25)
+time 108 sample = 432.75
+time 109 sample = 402.75
+time 110 sample = 372.75
+time 111 sample = 342.75
+Plucking string 'i'
+time 112 sample = 352.75
+time 113 sample = 322.75
+time 114 sample = 297.5
+time 115 sample = 277.5
+making an extra call on tic
+
+Playing note -11 (initially 233.25)
+time 117 sample = 470.75
+time 118 sample = 440.75
+time 119 sample = 410.75
+time 120 sample = 380.75
+Plucking string '9'
+time 121 sample = 390.75
+time 122 sample = 360.75
+time 123 sample = 330.75
+time 124 sample = 303.5
+making an extra call on tic
+
+Playing note -10 (initially 246.25)
+time 126 sample = 509.75
+time 127 sample = 479.75
+time 128 sample = 449.75
+time 129 sample = 419.75
+Plucking string 'o'
+time 130 sample = 429.75
+time 131 sample = 399.75
+time 132 sample = 369.75
+time 133 sample = 339.75
+making an extra call on tic
+
+Playing note -9 (initially 261.25)
+time 135 sample = 550.75
+time 136 sample = 520.75
+time 137 sample = 490.75
+time 138 sample = 460.75
+Plucking string 'p'
+time 139 sample = 470.75
+time 140 sample = 440.75
+time 141 sample = 410.75
+time 142 sample = 380.75
+making an extra call on tic
+
+Playing note -8 (initially 277.25)
+time 144 sample = 598.0
+time 145 sample = 564.75
+time 146 sample = 534.75
+time 147 sample = 504.75
+Plucking string '-'
+time 148 sample = 514.75
+time 149 sample = 484.75
+time 150 sample = 454.75
+time 151 sample = 424.75
+making an extra call on tic
+
+Playing note -7 (initially 293.25)
+time 153 sample = 658.0
+time 154 sample = 618.0
+time 155 sample = 581.75
+time 156 sample = 551.75
+Plucking string '['
+time 157 sample = 561.75
+time 158 sample = 531.75
+time 159 sample = 501.75
+time 160 sample = 471.75
+making an extra call on tic
+
+Playing note -6 (initially 311.25)
+time 162 sample = 723.0
+time 163 sample = 683.0
+time 164 sample = 643.0
+time 165 sample = 603.0
+Plucking string '='
+time 166 sample = 611.75
+time 167 sample = 581.75
+time 168 sample = 551.75
+time 169 sample = 521.75
+making an extra call on tic
+
+Playing note -5 (initially 329.25)
+time 171 sample = 791.0
+time 172 sample = 751.0
+time 173 sample = 711.0
+time 174 sample = 671.0
+Plucking string 'z'
+time 175 sample = 671.0
+time 176 sample = 633.75
+time 177 sample = 603.75
+time 178 sample = 573.75
+making an extra call on tic
+
+Playing note -4 (initially 349.25)
+time 180 sample = 863.0
+time 181 sample = 823.0
+time 182 sample = 783.0
+time 183 sample = 743.0
+Plucking string 'x'
+time 184 sample = 743.0
+time 185 sample = 703.0
+time 186 sample = 663.0
+time 187 sample = 629.75
+making an extra call on tic
+
+Playing note -3 (initially 369.25)
+time 189 sample = 939.0
+time 190 sample = 899.0
+time 191 sample = 859.0
+time 192 sample = 819.0
+Plucking string 'd'
+time 193 sample = 819.0
+time 194 sample = 779.0
+time 195 sample = 739.0
+time 196 sample = 699.0
+making an extra call on tic
+
+Playing note -2 (initially 391.25)
+time 198 sample = 1019.0
+time 199 sample = 979.0
+time 200 sample = 939.0
+time 201 sample = 899.0
+Plucking string 'c'
+time 202 sample = 899.0
+time 203 sample = 859.0
+time 204 sample = 819.0
+time 205 sample = 779.0
+making an extra call on tic
+
+Playing note -1 (initially 415.25)
+time 207 sample = 1114.25
+time 208 sample = 1065.0
+time 209 sample = 1025.0
+time 210 sample = 985.0
+Plucking string 'f'
+time 211 sample = 985.0
+time 212 sample = 945.0
+time 213 sample = 905.0
+time 214 sample = 865.0
+making an extra call on tic
+
+Playing note 0 (initially 440.25)
+time 216 sample = 1225.25
+time 217 sample = 1175.25
+time 218 sample = 1125.25
+time 219 sample = 1076.0
+Plucking string 'v'
+time 220 sample = 1076.0
+time 221 sample = 1036.0
+time 222 sample = 996.0
+time 223 sample = 956.0
+making an extra call on tic
+
+Playing note 1 (initially 466.25)
+time 225 sample = 1342.25
+time 226 sample = 1292.25
+time 227 sample = 1242.25
+time 228 sample = 1192.25
+Plucking string 'g'
+time 229 sample = 1182.25
+time 230 sample = 1133.0
+time 231 sample = 1093.0
+time 232 sample = 1053.0
+making an extra call on tic
+
+Playing note 2 (initially 493.25)
+time 234 sample = 1466.25
+time 235 sample = 1416.25
+time 236 sample = 1366.25
+time 237 sample = 1316.25
+Plucking string 'b'
+time 238 sample = 1306.25
+time 239 sample = 1256.25
+time 240 sample = 1206.25
+time 241 sample = 1156.25
+making an extra call on tic
+
+Playing note 3 (initially 523.25)
+time 243 sample = 1598.25
+time 244 sample = 1548.25
+time 245 sample = 1498.25
+time 246 sample = 1448.25
+Plucking string 'n'
+time 247 sample = 1438.25
+time 248 sample = 1388.25
+time 249 sample = 1338.25
+time 250 sample = 1288.25
+making an extra call on tic
+
+Playing note 4 (initially 554.25)
+time 252 sample = 1742.5
+time 253 sample = 1687.25
+time 254 sample = 1637.25
+time 255 sample = 1587.25
+Plucking string 'j'
+time 256 sample = 1577.25
+time 257 sample = 1527.25
+time 258 sample = 1477.25
+time 259 sample = 1427.25
+making an extra call on tic
+
+Playing note 5 (initially 587.25)
+time 261 sample = 1914.5
+time 262 sample = 1854.5
+time 263 sample = 1794.5
+time 264 sample = 1734.5
+Plucking string 'm'
+time 265 sample = 1724.25
+time 266 sample = 1674.25
+time 267 sample = 1624.25
+time 268 sample = 1574.25
+making an extra call on tic
+
+Playing note 6 (initially 622.25)
+time 270 sample = 2096.5
+time 271 sample = 2036.5
+time 272 sample = 1976.5
+time 273 sample = 1916.5
+Plucking string 'k'
+time 274 sample = 1896.5
+time 275 sample = 1836.5
+time 276 sample = 1780.25
+time 277 sample = 1730.25
+making an extra call on tic
+
+Playing note 7 (initially 659.25)
+time 279 sample = 2289.5
+time 280 sample = 2229.5
+time 281 sample = 2169.5
+time 282 sample = 2109.5
+Plucking string ','
+time 283 sample = 2089.5
+time 284 sample = 2029.5
+time 285 sample = 1969.5
+time 286 sample = 1909.5
+making an extra call on tic
+
+Playing note 8 (initially 698.25)
+time 288 sample = 2494.5
+time 289 sample = 2434.5
+time 290 sample = 2374.5
+time 291 sample = 2314.5
+Plucking string '.'
+time 292 sample = 2294.5
+time 293 sample = 2234.5
+time 294 sample = 2174.5
+time 295 sample = 2114.5
+making an extra call on tic
+
+Playing note 9 (initially 739.25)
+time 297 sample = 2733.75
+time 298 sample = 2663.75
+time 299 sample = 2593.75
+time 300 sample = 2530.5
+Plucking string ';'
+time 301 sample = 2510.5
+time 302 sample = 2450.5
+time 303 sample = 2390.5
+time 304 sample = 2330.5
+making an extra call on tic
+
+Playing note 10 (initially 783.25)
+time 306 sample = 2993.75
+time 307 sample = 2923.75
+time 308 sample = 2853.75
+time 309 sample = 2783.75
+Plucking string '/'
+time 310 sample = 2753.75
+time 311 sample = 2683.75
+time 312 sample = 2619.5
+time 313 sample = 2559.5
+making an extra call on tic
+
+Playing note 11 (initially 830.25)
+time 315 sample = 3269.75
+time 316 sample = 3199.75
+time 317 sample = 3129.75
+time 318 sample = 3059.75
+Plucking string '''
+time 319 sample = 3029.75
+time 320 sample = 2959.75
+time 321 sample = 2889.75
+time 322 sample = 2819.75
+making an extra call on tic
+
+Playing note 12 (initially 880.25)
+time 324 sample = 3562.75
+time 325 sample = 3492.75
+time 326 sample = 3422.75
+time 327 sample = 3352.75
+Plucking string ' '
+time 328 sample = 3322.75
+time 329 sample = 3252.75
+time 330 sample = 3182.75
+time 331 sample = 3112.75
+making an extra call on tic
+
+testing playNote for unsupported pitch -32
+time 333 sample = 2972.75
+time 334 sample = 2902.75
+time 335 sample = 2832.75
+time 336 sample = 2762.75
+
+testing playNote for unsupported pitch -25
+time 337 sample = 2700.5
+time 338 sample = 2640.5
+time 339 sample = 2580.5
+time 340 sample = 2520.5
+
+testing playNote for unsupported pitch 13
+time 341 sample = 2460.5
+time 342 sample = 2400.5
+time 343 sample = 2340.5
+time 344 sample = 2280.5
+
+testing playNote for unsupported pitch 18
+time 345 sample = 2220.5
+time 346 sample = 2160.5
+time 347 sample = 2100.5
+time 348 sample = 2040.5
+
