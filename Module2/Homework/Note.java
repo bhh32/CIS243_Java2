@@ -9,7 +9,7 @@
 import java.util.*;
 
 public class Note {
-   private static final double DECAY_FACTOR = .996;
+   public static final double DECAY_FACTOR = .996;
    
    // Can only use add(), remove, isEmpty, size, and peek
    private Queue<Double> ringBuffer = new LinkedList<Double>();
@@ -69,13 +69,14 @@ public class Note {
          This method should replace the N elements in the ring buffer with N random values 
          between -0.5 inclusive and +0.5 exclusive (i.e. -0.5 <= value < 0.5).
       */
+      int bufferSize = ringBuffer.size();
       while (!ringBuffer.isEmpty()) {
          ringBuffer.remove();
       }
       
       double max = 0.5;
       double min = -0.5;
-      for (int i = 0; i < ringBuffer.size(); ++i) {
+      for (int i = 0; i < bufferSize; ++i) {
          ringBuffer.add((Math.random() * (max - min)) + min);
       }
    }
@@ -90,6 +91,7 @@ public class Note {
       */
       
       ringBuffer.add(((ringBuffer.remove() + ringBuffer.peek()) / 2) * DECAY_FACTOR);
+      
    }
    
    public double sample() {
@@ -98,11 +100,5 @@ public class Note {
       */
    
       return ringBuffer.peek();
-   }
-   
-   public static void main(String[] args) {
-      Note n = new Note(3.45);
-      
-      n.play();
    }
 }
