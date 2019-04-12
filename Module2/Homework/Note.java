@@ -12,7 +12,7 @@ public class Note {
    private static final double DECAY_FACTOR = .996;
    
    // Can only use add(), remove, isEmpty, size, and peek
-   private Queue<Integer> ringBuffer = LinkedList<>();
+   private Queue<Double> ringBuffer = new LinkedList<Double>();
    
    public Note(double frequency) {
       /*
@@ -28,17 +28,21 @@ public class Note {
          Check frequency to ensure 
       */   
       if (frequency <= 0) {
-         throw new IllegalArgumentException();
+         throw new IllegalArgumentException("The frequency passed into "
+            + "Note(freqency) was less than or equal to zero.");
       }
       
-      int capacity = Math.round(StdAudio.SAMPLE_RATE / frequency);
+      // Caclulate ringBuffer capacity
+      int capacity = (int) Math.round(StdAudio.SAMPLE_RATE / frequency);
       
       if (capacity < 2) {
-         throw new IllegalArgumentException();
+         throw new IllegalArgumentException("The capacity for the ring buffer "
+            + "calculated out to be less than 2.");
       }
       
+      // Initialize ringBuffer
       while (ringBuffer.size() < capacity) {
-         ringBuffer.add(0);
+         ringBuffer.add(0.0);
       }
    }
    
@@ -49,6 +53,15 @@ public class Note {
       throw an IllegalArgumentException.  This constructor is used only for testing purposes, 
       but it must be present.
       */
+      
+      if (init.length < 2) {
+         throw new IllegalArgumentException("The array passed into Note(double[] init has " 
+            + "less than 2 elements.");
+      }
+      
+      for (int i = 0; i < init.length; ++i) {
+         ringBuffer.add(init[i]);
+      }
    }
    
    public void play() {
@@ -56,6 +69,15 @@ public class Note {
          This method should replace the N elements in the ring buffer with N random values 
          between -0.5 inclusive and +0.5 exclusive (i.e. -0.5 <= value < 0.5).
       */
+      while (!ringBuffer.isEmpty()) {
+         ringBuffer.remove();
+      }
+      
+      double max = 0.5;
+      double min = -0.5;
+      for (int i = 0; i < ringBuffer.size(); ++i) {
+         ringBuffer.add((Math.random() * (max - min)) + min);
+      }
    }
    
    public void tic() {
@@ -66,6 +88,8 @@ public class Note {
          multiplied by the energy decay factor (0.996).  Your class should include a public 
          constant for the energy decay factor.
       */
+      
+      ringBuffer.add(((ringBuffer.remove() + ringBuffer.peek()) / 2) * DECAY_FACTOR);
    }
    
    public double sample() {
@@ -74,5 +98,11 @@ public class Note {
       */
    
       return ringBuffer.peek();
+   }
+   
+   public static void main(String[] args) {
+      Note n = new Note(3.45);
+      
+      n.play();
    }
 }
