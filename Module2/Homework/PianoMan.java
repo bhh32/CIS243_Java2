@@ -2,7 +2,7 @@
 
 public class PianoMan {
     public static void main(String[] args) {
-        Piano pianica = new MouthHarp(); // replace with Pianica once it is ready
+        Piano pianica = new Pianica(); // replace with Pianica once it is ready
         // this is an infinite loop--user must quit the application
         for (;;) {
             // check if the user has typed a key; if so, process it

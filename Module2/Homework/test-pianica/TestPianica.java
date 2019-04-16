@@ -20,12 +20,12 @@ public class TestPianica {
              440.25, 466.25, 493.25, 523.25, 554.25, 587.25, 622.25, 659.25,
              698.25, 739.25, 783.25, 830.25, 880.25};
         Piano pianica = new Pianica();
-        for (int i = 0; i < KEYBOARD.length(); i++) {
+        for (int i = 0; i < KEYS.length(); i++) {
             int note = i - 24;
             System.out.println("Playing note " + note + " (initially " +
                                frequencies[i] + ")");
             pianica.playNote(note);
-            advance(g, 4);
+            advance(pianica, 4);
             char key = KEYS.charAt(i);
             System.out.println("Playing key '" + key + "'");
             if (pianica.hasKey(key)) {

@@ -2,28 +2,17 @@
    CIS143
    Piano Man (Week 2)
    12Apr19
-   
-   Implements the Piano class and 
-   uses the Note class to play a
-   tune. Simulates a 37 key (pianica)
-   piano.
 */
 
 
 public class Pianica implements Piano {
    public static final String KEYS =
        "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";  // keyboard layout
-   
-   // Frequency played at Concert A
    private static final int CONCERT_A = 440;
-   // Added to pitch in playNote() 
-   private static final int PITCH_CONSTANT = 24;
-   // Array of the 37 notes  
+   private static final int PITCH_CONSTANT = 24;  
    private Note[] notes = new Note[37];
-   // Time after each tic call
    private int timePlaying;
    
-   // Constructs the 37 notes that the pianica can play
    public Pianica() {
       notes[24] = new Note(CONCERT_A);
       
@@ -33,17 +22,13 @@ public class Pianica implements Piano {
          }
       }
    } 
-   
-   // Adds 24 to the pitch to play the correct note
-   // ignores notes not in the array.
+       
    public void playNote(int pitch) {
       if (pitch + PITCH_CONSTANT > 0 && pitch + PITCH_CONSTANT < KEYS.length()) {
          notes[pitch + PITCH_CONSTANT].play();
       }
    }
    
-   // Returns true if the key is a valid key on the
-   // pianica keyboard (KEYS), and false if it isn't.
    public boolean hasKey(char key) {
       for (int i = 0; i < KEYS.length(); ++i) {
          if (KEYS.charAt(i) == key) {
@@ -53,8 +38,6 @@ public class Pianica implements Piano {
       return false;
    }
    
-   // If the key is valid it plays the note for that key
-   // otherwise throws an IllegalArgumentException.
    public void playKey(char key) {
       if (hasKey(key)) {
          notes[KEYS.indexOf(key)].play();
@@ -64,7 +47,6 @@ public class Pianica implements Piano {
       }
    }
    
-   // Adds up and returns all of the note samples.
    public double sample() {
       double sample = 0.0;
       
@@ -75,8 +57,6 @@ public class Pianica implements Piano {
       return sample;
    }
    
-   // Calls all of the notes tic method and
-   // then moves timePlaying forward one value.
    public void tic() {
       for (int i = 0; i < notes.length; ++i) {
          notes[i].tic();
@@ -85,8 +65,11 @@ public class Pianica implements Piano {
       timePlaying++;
    }
    
-   // Returns how many tic calls there have been.
    public int time() {
       return timePlaying;
+   }
+   
+   public static void main(String[] args) {
+      Pianica p = new Pianica();
    }
 }
