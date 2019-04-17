@@ -23,15 +23,17 @@ public class Pianica implements Piano {
    // Time after each tic call
    private int timePlaying;
    
+   public static void main(String[] args) {
+      Piano p = new Pianica();
+   }
+   
    // Constructs the 37 notes that the pianica can play
    public Pianica() {
-      notes[24] = new Note(CONCERT_A);
-      
       for (int i = 0; i < notes.length; ++i) {
-         if (i != 24) {
-            notes[i] = new Note(CONCERT_A * Math.pow(2, (double)i/12.0));
-         }
+         notes[i] = new Note(CONCERT_A * Math.pow(2, ((i - PITCH_CONSTANT) / 12)));
       }
+      
+      // 440 × 2(i - 24) / 12
    } 
    
    // Adds 24 to the pitch to play the correct note

@@ -1,4 +1,4 @@
-// This program can be used to record a song played using a Pianica object.
+s// This program can be used to record a song played using a Pianica object.
 // Start the program and play whatever notes you want and type the letter "s"
 // to stop recording.  If you don't type "s", it won't properly record the last
 // note that you play.
