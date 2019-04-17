@@ -43,7 +43,7 @@ public class Pianica implements Piano {
    // Adds 24 to the pitch to play the correct note
    // ignores notes not in the array.
    public void playNote(int pitch) {
-      if (pitch + PITCH_CONSTANT > 0 && pitch + PITCH_CONSTANT < KEYS.length()) {
+      if (pitch + PITCH_CONSTANT >= 0 && pitch + PITCH_CONSTANT < KEYS.length()) {
          notes[pitch + PITCH_CONSTANT].play();
       }
    }
@@ -84,11 +84,11 @@ public class Pianica implements Piano {
    // Calls all of the notes tic method and
    // then moves timePlaying forward one value.
    public void tic() {
+      timePlaying++;
+   
       for (int i = 0; i < notes.length; ++i) {
          notes[i].tic();
       }
-      
-      timePlaying++;
    }
    
    // Returns how many tic calls there have been.
