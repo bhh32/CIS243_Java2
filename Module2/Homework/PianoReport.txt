@@ -2,18 +2,32 @@
     1.) Bryan Hyland
         CIS143
         Piano Man (Week 2)
-        12Apr19
+        17Apr19
 
     2.) How long in hours did you spend on the assignment?
+  
+          I spent approximately a total of 4 hours on the assignment.
 
     3.) What key Java features or Object Oriented concepts did this help you understand (or review, if you already have some programming experience)?
+          
+          It reminded me that if you don't use the correct operator ( < vs <= ) you will get unexpected results, and because it's legal very hard to debug.
 
     4.) What resources did you use to solve this? (Textbook, class information, tutors, office hours, websites, other?) Provide URLs to websites if used.
+ 
+          Class documentation, and asked questions to the instructor.
 
     5.) What vagueness can you identify in the specification or missing checks in the tests provided? What testing or validation did you do to see if your program behaved as expected?
 
+          There was a lack of clarity on how to implement time(), and what exactly it was used for since MouthHarp just returned a -1. It was from past experience from doing other projects that I worked out what exactly time kept track of, and what it was supposed to return.
+
     6.) It is often the case that their checks leave out some case, or that their specifications are not water-tight but open to interpretation. Give this some thought, as identifying the cracks in a specification or set of tests is a key software developer skill.
 
-    7.) What parts of your code could use improvement or disappointed you (what work didn’t you get done, that more time would have enabled you to finish, or what bugs did you not resolve)? Note any remaining questions you may have on the assigned items or the material from the chapter here.
+          The specifications for the constructor were vague as what it was supposed to be doing in the long run. It was good to have the MouthHarp class to look at to see how it created its constructor to implement the notes. It was here that I figured out what the constructor was supposed to be doing; along with the specifications to figure out the math formula to put the right frequency in the proper note.
+
+    7.) What parts of your code could use improvement or disappointed you (what work didn't you get done, that more time would have enabled you to finish, or what bugs did you not resolve)? Note any remaining questions you may have on the assigned items or the material from the chapter here.
+
+          Once I figured out what the classes were supposed to be doing, they weren't all that hard to implement. I probably would've taken quite a bit less time to complete it if it weren't for the operator typo when creating the operations for the playNote() class in Pianica. I'm sure there are a few things that could be improved upon still though.
 
     8.) Which part of your work on this are you the most pleased about?
+
+          I'm most pleased that I was able to debug the code the way that I did. When the math in the constructor was fixed, and I still continued to get the first 4 frequency values as 0.0, I wasn't sure what else to look at so started to dig deeper into what I had done. This lead me to find that I had a typo in my if statement in playNote() that ignored the element 0 in the notes array.

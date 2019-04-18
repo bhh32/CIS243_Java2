@@ -1,32 +1,33 @@
 /*
    Bryan Hyland
    12Apr19
-   PianoMan
+   Week 2 - PianoMan
    
-   TODO: Enter a description of the class when done
+   Stores and manipulates the musical notes that
+   are played in the MouthHarp and Pianica classes.
 */
 
 import java.util.*;
 
 public class Note {
    public static final double DECAY_FACTOR = .996;
-   
-   // Can only use add(), remove, isEmpty, size, and peek
+   private static final double MAX_RANDOM_VALUE = 0.5;
+   private static final double MIN_RANDOM_VALUE = -0.5;
    private Queue<Double> ringBuffer = new LinkedList<Double>();
    
+   /*
+      Constructs a note of the given frequency.  It creates a ring buffer 
+      of the desired capacity N (sampling rate divided by frequency, rounded 
+      to the nearest integer), and initializes it to represent a string at 
+      rest by enqueueing N zeros. 
+      
+      The sampling rate is specified by the constant StdAudio.SAMPLE_RATE.  
+      If the frequency is less than or equal to 0 or if the resulting size 
+      of the ring buffer would be less than 2, throws an 
+      IllegalArgumentException.
+   */
    public Note(double frequency) {
-      /*
-         Constructs a note of the given frequency.  It creates a ring buffer 
-         of the desired capacity N (sampling rate divided by frequency, rounded 
-         to the nearest integer), and initializes it to represent a string at 
-         rest by enqueueing N zeros  (enqueueing means add to the end of the queue). 
-         The sampling rate is specified by the constant StdAudio.SAMPLE_RATE.  
-         If the frequency is less than or equal to 0 or if the resulting size of the 
-         ring buffer would be less than 2, your method should throw an IllegalArgumentException.
-      */ 
-      /*
-         Check frequency to ensure 
-      */   
+         
       if (frequency <= 0) {
          throw new IllegalArgumentException("The frequency passed into "
             + "Note(freqency) was less than or equal to zero.");
@@ -46,17 +47,17 @@ public class Note {
       }
    }
    
-   public Note(double[] init) {
-      /*
-      Constructs a note and initializes the contents of the ring buffer to the values 
-      in the array.  If the array has fewer than two elements, your constructor should 
-      throw an IllegalArgumentException.  This constructor is used only for testing purposes, 
-      but it must be present.
-      */
-      
+   /*
+      Constructs a note and initializes the contents of 
+      the ring buffer to the values in the array.  If
+      the array has fewer than two elements, throws
+      an IllegalArgumentException.
+   */
+   public Note(double[] init) {      
       if (init.length < 2) {
-         throw new IllegalArgumentException("The array passed into Note(double[] init has " 
-            + "less than 2 elements.");
+         throw new IllegalArgumentException("The array passed "
+            + "into Note(double[] init) has less than "
+            + "2 elements.");
       }
       
       for (int i = 0; i < init.length; ++i) {
@@ -64,41 +65,37 @@ public class Note {
       }
    }
    
-   public void play() {
-      /*
-         This method should replace the N elements in the ring buffer with N random values 
-         between -0.5 inclusive and +0.5 exclusive (i.e. -0.5 <= value < 0.5).
-      */
+   /*
+      Replaces the elements in the ring buffer with random values 
+      between -0.5 inclusive and +0.5 exclusive.
+   */
+   public void play() {      
       int bufferSize = ringBuffer.size();
       while (!ringBuffer.isEmpty()) {
          ringBuffer.remove();
       }
       
-      double max = 0.5;
-      double min = -0.5;
       for (int i = 0; i < bufferSize; ++i) {
-         ringBuffer.add((Math.random() * (max - min)) + min);
+         ringBuffer.add(Math.random() 
+            * (MAX_RANDOM_VALUE - MIN_RANDOM_VALUE) 
+            + MIN_RANDOM_VALUE);
       }
    }
    
-   public void tic() {
-      /*
-         This method should apply the Karplus-Strong update once (performing one step).  
-         It should delete the sample at the front of the ring buffer and add to the end of 
-         the ring buffer the average of the first two samples (the one you deleted and the next one), 
-         multiplied by the energy decay factor (0.996).  Your class should include a public 
-         constant for the energy decay factor.
-      */
-      
-      ringBuffer.add(((ringBuffer.remove() + ringBuffer.peek()) / 2) * DECAY_FACTOR);
-      
+   /*
+      Deletes the sample at the front of the ring buffer 
+      and adds to the end of the ring buffer the average 
+      of the first two samples multiplied by the energy 
+      decay factor (0.996).
+   */
+   public void tic() {      
+      ringBuffer.add(
+         ((ringBuffer.remove() + ringBuffer.peek()) / 2)
+         * DECAY_FACTOR);      
    }
    
-   public double sample() {
-      /*
-         This method should return the current sample (the value at the front of the ring buffer).
-      */
-   
+   // Returns the frequency of the first element of the ringBuffer.
+   public double sample() { 
       return ringBuffer.peek();
    }
 }
