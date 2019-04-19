@@ -1,0 +1,151 @@
+Welcome to Sherwood Forest!
+
+What player file do you want to use? players.txt
+Do you want the players shuffled? (y/n)? n
+
+Current thief ring:
+    Kevin Mitnick will steal from Jonathan James
+    Jonathan James will steal from Albert Gonzalez
+    Albert Gonzalez will steal from Kevin Poulsen
+    Kevin Poulsen will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Giccifer 2.0
+    Giccifer 2.0 will steal from Anonymous
+    Anonymous will steal from Kevin Mitnick
+Current stolen list:
+
+Who's next? Kevin Mitnick
+
+Current thief ring:
+    Jonathan James will steal from Albert Gonzalez
+    Albert Gonzalez will steal from Kevin Poulsen
+    Kevin Poulsen will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Giccifer 2.0
+    Giccifer 2.0 will steal from Anonymous
+    Anonymous will steal from Jonathan James
+Current stolen list:
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Anonymous
+
+Current thief ring:
+    Jonathan James will steal from Albert Gonzalez
+    Albert Gonzalez will steal from Kevin Poulsen
+    Kevin Poulsen will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Giccifer 2.0
+    Giccifer 2.0 will steal from Jonathan James
+Current stolen list:
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Kevin Poulsen
+
+Current thief ring:
+    Jonathan James will steal from Albert Gonzalez
+    Albert Gonzalez will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Giccifer 2.0
+    Giccifer 2.0 will steal from Jonathan James
+Current stolen list:
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Jonathan James
+
+Current thief ring:
+    Albert Gonzalez will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Giccifer 2.0
+    Giccifer 2.0 will steal from Albert Gonzalez
+Current stolen list:
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Giccifer 2.0
+
+Current thief ring:
+    Albert Gonzalez will steal from Gary McKinnon
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Albert Gonzalez
+Current stolen list:
+    Giccifer 2.0 was stolen from by Julian Assange
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Albert Gonzalez
+
+Current thief ring:
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Lloyd Blankenship
+    Lloyd Blankenship will steal from Julian Assange
+    Julian Assange will steal from Gary McKinnon
+Current stolen list:
+    Albert Gonzalez was stolen from by Julian Assange
+    Giccifer 2.0 was stolen from by Julian Assange
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? lloyd blankenShip
+
+Current thief ring:
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Julian Assange
+    Julian Assange will steal from Gary McKinnon
+Current stolen list:
+    Lloyd Blankenship was stolen from by Robert Tappan Morris
+    Albert Gonzalez was stolen from by Julian Assange
+    Giccifer 2.0 was stolen from by Julian Assange
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? Julian assangE
+
+Current thief ring:
+    Gary McKinnon will steal from Robert Tappan Morris
+    Robert Tappan Morris will steal from Gary McKinnon
+Current stolen list:
+    Julian Assange was stolen from by Robert Tappan Morris
+    Lloyd Blankenship was stolen from by Robert Tappan Morris
+    Albert Gonzalez was stolen from by Julian Assange
+    Giccifer 2.0 was stolen from by Julian Assange
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous
+
+Who's next? gary mckinnon
+
+Robert Tappan Morris is Robin Hood!
+Final stolen list is as follows:
+    Gary McKinnon was stolen from by Robert Tappan Morris
+    Julian Assange was stolen from by Robert Tappan Morris
+    Lloyd Blankenship was stolen from by Robert Tappan Morris
+    Albert Gonzalez was stolen from by Julian Assange
+    Giccifer 2.0 was stolen from by Julian Assange
+    Jonathan James was stolen from by Giccifer 2.0
+    Kevin Poulsen was stolen from by Albert Gonzalez
+    Anonymous was stolen from by Giccifer 2.0
+    Kevin Mitnick was stolen from by Anonymous

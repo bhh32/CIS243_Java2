@@ -1,0 +1,25 @@
+Welcome to Sherwood Forest!
+
+What player file do you want to use? names3.txt
+Do you want the players shuffled? (y/n)? n
+
+Current thief ring:
+    Larry will steal from Curly
+    Curly will steal from Moe
+    Moe will steal from Larry
+Current stolen list:
+
+Who's next? Curly
+
+Current thief ring:
+    Larry will steal from Moe
+    Moe will steal from Larry
+Current stolen list:
+    Curly was stolen from by Larry
+
+Who's next? Moe
+
+Larry is Robin Hood!
+Final stolen list is as follows:
+    Moe was stolen from by Larry
+    Curly was stolen from by Larry

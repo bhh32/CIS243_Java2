@@ -1,0 +1,7 @@
+Welcome to Sherwood Forest!
+
+What player file do you want to use? player1.txt
+Do you want the players shuffled? (y/n)? n
+
+Nero is Robin Hood!
+Final stolen list is as follows:

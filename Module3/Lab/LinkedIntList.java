@@ -22,34 +22,39 @@ public class LinkedIntList {
    }
    
    public void nodeFlip() {
+   
       if (front == null) {
          add(0);
       }
       
       ListNode current = front;
+      ListNode temp = current;
       boolean firstFlip = true;
       while (current.next != null) {
-         ListNode temp = flip(current, current.next);
+         ListNode retNode = flip(current, current.next);
          if (firstFlip) {
-            front = temp;
+            front = retNode;
             firstFlip = false;
          }
          else {
-            temp.next = current.next;
-            current.next = temp;
+            temp.next = retNode;
+            temp = current;
          }
-         current = current.next;
-         System.out.println();
+         
+         // Ensures that the new current isn't set to a null
+         if (current.next != null) {
+            current = current.next;
+         }
       }
    }
    
+   // Helper method that flips the given nodes, and returns the "first" one
    private static ListNode flip(ListNode first, ListNode second) {      
-      ListNode temp = second;
-      ListNode secondTemp = second.next;
+      ListNode temp = second.next;
       second.next = first;
       first = second;
       
-      second.next.next = secondTemp;
+      second.next.next = temp;
       second.next = first.next;
       
       return first;
@@ -64,15 +69,6 @@ public class LinkedIntList {
             current = current.next;
          }
          current.next = new ListNode(data);
-      }
-   }
-   
-   private void printLinkedIntList() {
-      ListNode current = front;
-      
-      while (current.next != null) {
-         System.out.print(current.data + " ");
-            
       }
    }
 
@@ -107,6 +103,8 @@ public class LinkedIntList {
       list.add(10);
       list.add(5);
       list.add(12);
+      list.add(42);
+      list.add(51);
       
       System.out.println(list.sum());
       list.nodeFlip();

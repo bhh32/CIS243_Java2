@@ -45,17 +45,34 @@ public class LinkedListDemo {
    }
    
    private static void checkIndex(int idx, int max) {
-      if (idx > max) {
-         throw new IndexOutOfBoundsException("Can't add beyond the end of the list");
+      if (idx > max || idx < 0) {
+         throw new IndexOutOfBoundsException("Can't have and index beyond the end of the list, or less than 0");
       }
    }
    
    public void remove(int idx) {
-   
+      checkIndex(idx, size() - 1);
+      
+      ListNode previous = walkToNode(idx - 1);
+      
+      if (previous == null) {
+         front = front.next;
+      }
+      else {
+         previous.next = previous.next.next;
+      }
    }
    
    public void set(int idx, int value) {
-   
+      checkIndex(idx, size() - 1);
+      ListNode previous = walkToNode(idx - 1);
+      if (previous == null) {
+         front = new ListNode(value, front.next);
+      }
+      else {      
+         ListNode newNode = new ListNode(value, previous.next.next);
+         previous.next = newNode;
+      }
    }
    
    public int indexOf(int value) {      
@@ -117,7 +134,9 @@ public class LinkedListDemo {
       list.add(10);
       list.add(34);
       list.add(1, 42);
-      
+      list.set(1, 12);
+      list.set(0, 24);
+      list.set(2, -42);
       System.out.println(list);
    }
 }
