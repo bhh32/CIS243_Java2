@@ -24,11 +24,11 @@ public class GameManager {
          throw new IllegalArgumentException("The names list is null or empty!");
       }
       
-      thiefFront = new PlayerNode(names.get(0);
-      currentTheif = theifFront;
+      thiefFront = new PlayerNode(names.get(0));
+      PlayerNode currentTheif = thiefFront;
       for (int i = 1; i < names.size(); ++i) {
-         currentThief.next = new PlayerNode(names.get(i));
-         currentThief = currentTheif.next;
+         currentTheif.next = new PlayerNode(names.get(i));
+         currentTheif = currentTheif.next;
       }
    }
    
@@ -41,7 +41,11 @@ public class GameManager {
          is the Prince of Thieves!". (Note, RobinHood never calls printThiefRing once the game 
          is won, so you have to test for this behavior yourself.)
       */
-   
+      PlayerNode current = thiefFront;
+      while (current.next != null) {
+         System.out.println(current.name + " will steal from " + current.next.name + "!");
+         current = current.next;
+      }
    }
    
    public void printStolenList() {
@@ -52,6 +56,13 @@ public class GameManager {
          next more recently stolen from, and so on).  It should produce no output if the history 
          list is empty (no-one has been stolen from yet).
       */
+      if (stolenFront != null) {
+         PlayerNode current = stolenFront;
+         
+         while (current != null) {
+            // TODO: Print out current player and the one that stole from it.
+         }
+      }
    }
    
    public boolean thiefRingContains(String name) {
@@ -110,7 +121,7 @@ public class GameManager {
       if (isGameOver()) {
          throw new IllegalStateException("The game is over, you cannot continue to steal!");
       }
-      if (!isNameTheif(name)) {
+      if (!isNameThief(name)) {
          throw new IllegalArgumentException("The name provided isn't part of the current theif ring!");
       }
       
@@ -131,7 +142,14 @@ public class GameManager {
    }
    
    
-   
+   public static void main(String[] args) {
+      List<String> nameList = new ArrayList<String>();
+      nameList.add("Bryan");
+      nameList.add("Meghan");
+      nameList.add("Zoe");
+      GameManager newGame = new GameManager(nameList);
+      newGame.printThiefRing();
+   }
    
 	// YOUR CODE GOES ABOVE THIS LINE ONLY (not below)
 

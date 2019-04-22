@@ -1,10 +1,14 @@
-// For Week 3's Lab exercises, a minimal LinkedIntList
-
+// For Week 3's Lab exercises, a minimal LinkedIntLis
+/*
+   Bryan Hyland
+   CIS143 - Java 2
+   LinkedIntList
+*/
 public class LinkedIntList {
-
+   // First node in the linked list (reference)
    private ListNode front;
-
-   // add your code here
+   
+   // Adds up all of the data in the list of nodes
    public int sum() {
       ListNode current = front;
       
@@ -21,15 +25,23 @@ public class LinkedIntList {
       return sum;
    }
    
+   // Flips the nodes in the list leaving the
+   // last one if the lists size is odd.
    public void nodeFlip() {
    
+      // Adds one to the list is empty
       if (front == null) {
          add(0);
       }
       
       ListNode current = front;
       ListNode temp = current;
+      
+      // flag to know if it's the first two nodes
+      // being flipped.
       boolean firstFlip = true;
+      
+      // Flip the nodes in the list
       while (current.next != null) {
          ListNode retNode = flip(current, current.next);
          if (firstFlip) {
@@ -60,6 +72,9 @@ public class LinkedIntList {
       return first;
    }
 
+
+   // add your code here
+   
    public void add(int data) {
       ListNode current = front;
       if (current == null) {
