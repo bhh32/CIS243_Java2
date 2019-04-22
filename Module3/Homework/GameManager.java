@@ -70,7 +70,16 @@ public class GameManager {
          This should return true if the given name is in the current thief ring and should 
          return false otherwise.  It should ignore case in comparing names.
       */
-      
+      String nameWithoutCase = name.toLowerCase();
+      PlayerNode current = thiefFront;
+      while (current.next != null) {
+         String temp = current.name.toLowerCase();
+         if (temp.equals(nameWithoutCase)) {
+            return true;
+         }
+         
+         current = current.next;
+      }      
       return false;
    }
    
