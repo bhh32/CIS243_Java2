@@ -43,11 +43,11 @@ public class GameManager {
          is the Prince of Thieves!". (Note, RobinHood never calls printThiefRing once the game 
          is won, so you have to test for this behavior yourself.)
       */
-      if (thiefFront.next != null) {
+      if (thiefFront.next != thiefFront) {
          printMessage(" will steal from ", thiefFront);
       }
       else {
-         printMessage(" is the Prince of Theives!", thiefFront);
+         printMessage(" is Robin Hood!", thiefFront);
       }
    }
    
@@ -88,7 +88,7 @@ public class GameManager {
          person in it) and should return false otherwise.
       */
       
-      return thiefFront.next == null;
+      return thiefFront.next == thiefFront;
    }
    
    public String winner() {
@@ -155,6 +155,9 @@ public class GameManager {
             stolenCurrent = stolenCurrent.next;
          }
          
+         if (stolenCurrent == null) {
+            stolenCurrent = stolenFront;
+         }
          // Last in thief ring
          if (current.next == thiefFront) {
             stolenCurrent.next = thiefFront;
@@ -164,11 +167,19 @@ public class GameManager {
          else {
             stolenCurrent.next = current.next;
             current.next = current.next.next;
+            stolenCurrent.next.next = null;
+            // Swap positions in list to ensure the first node is last
+            PlayerNode temp = stolenCurrent;
+            stolenCurrent = stolenCurrent.next; // Wrong order somehow
+            stolenCurrent.next = null;
          }
+         
+         
+         
          
          // Ensure that the stolen list last node.next
          // is null to ensure independence from thief ring.
-         stolenCurrent.next.next = null;
+         //stolenCurrent.next.next = null;
       }
    }
    
@@ -184,26 +195,27 @@ public class GameManager {
       // Check to see which Linked list it's handed
       if (frontNode == thiefFront) {
          // Prints out the message if there is a winner.
-         if (frontNode.next == null) {
-            System.out.println(frontNode.name + msg);
+         if (frontNode.next == frontNode) {
+            System.out.println("    " + frontNode.name + msg);
          }
          // Walk the list printing out who is stealing from whom.
          else {            
             while (current.next != frontNode && current.next != null) {               
-               System.out.println(current.name + msg + current.next.name + "!");
+               System.out.println("    " + current.name + msg + current.next.name);
                if (current.next != null) {
                   current = current.next;
                }
-            }
+            }            
+            // Print out the last nodes message.
+            System.out.println("    " + current.name + msg + thiefFront.name);
          }
-         // Print out the last nodes message.
-         System.out.println(current.name + msg + thiefFront.name + "!");
+         
       }
       else {
          // Walk the stolen list printing out the messages for each node.
          while (current != null) {
             System.out.println("    " + current.name + msg 
-               + current.thief + "!");
+               + current.thief);
             current = current.next;
          }
       }

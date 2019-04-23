@@ -1,8 +1,3 @@
-import org.junit.Assert;
-import org.junit.Before;
-import java.util.regex.*;
-
-
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
@@ -156,7 +151,7 @@ public class GameManagerTest {
             + "    Tim was stolen from by Zach" + System.lineSeparator(), stole);
 	}
 
-	/*@Test
+	@Test
 	public void testWinnerGameNotOver() {
 		List<String> players = new LinkedList<>();
 		players.add("Zach");
@@ -332,7 +327,7 @@ public class GameManagerTest {
 		checkThiefRing(pm, "    Zach is targeting Grace" + System.lineSeparator()
 				+ "    Grace is targeting Zach"	+ System.lineSeparator());
 	}
-*/
+
 	// https://stackoverflow.com/questions/27781380/junit-expected-exception-message-regular-expression#27781794
 	private Matcher<String> matchesRegex(final String regex) {
 		return new TypeSafeMatcher<String>() {
