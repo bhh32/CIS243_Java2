@@ -1,6 +1,10 @@
 /*
-   Extra instructions: Nested Loops are NOT allowed! This includes calling a method from a loop
-                       that has a loop!
+   Bryan Hyland
+   24Apr19
+   CIS143 - Java 2
+   
+   This class manages the Thief Ring, Stolen
+   List, and win state of the Robin Hood game.
 */
 
 import java.util.*;
@@ -9,17 +13,13 @@ public class GameManager {
    private PlayerNode thiefFront;
    private PlayerNode stolenFront;
    
+   /*
+      Adds the elements of the passed in list to the 
+      thief ring in the order they are in the list.
+      Throws an IllegalArugumentException if the list
+      is either empty or full of nulls.
+   */
    public GameManager(List<String> names) {
-      /*
-         This is your constructor. It should add the names from the 
-         list into the thief ring in the same order in which they appear 
-         in the list.  For example, if the list contains {"Sam", "Zach", "Sarah"}, 
-         in that order, then in the initial thief ring we should see that 
-         Sam is targeting Zach who is targeting Sarah who is targeting 
-         Sam (reported in that order).  You may assume that the names are 
-         non-empty strings and that there are no duplicate names (ignoring case).  
-         Your method should throw an IllegalArgumentException if the list is null or empty.
-      */
       if (names == null || names.isEmpty()) {
          throw new IllegalArgumentException("The names list is null or empty!");
       }
@@ -34,16 +34,16 @@ public class GameManager {
       currentThief.next = thiefFront;
    }
    
+   /*
+      Prints the names of the people in the
+      thief ring; line by line. If there is
+      only one person in the thiefRing that
+      <name> is the Prince of Thieves! is 
+      printed out instead.
+   */
    public void printThiefRing() {
-      /*
-         This method should print the names of the people in the thief ring, one per line, 
-         with each line indented four spaces (not a tab!), with output of the form "<name> 
-         will steal from <name>", where each <name> is replaced by a player's name with no <>'s.  
-         If the game is over, it should instead print (with the indentation still): "<name> 
-         is the Prince of Thieves!". (Note, RobinHood never calls printThiefRing once the game 
-         is won, so you have to test for this behavior yourself.)
-      */
-      if (thiefFront.next != null) {
+      
+      if (thiefFront.next != thiefFront) {
          printMessage(" will steal from ", thiefFront);
       }
       else {
@@ -51,73 +51,79 @@ public class GameManager {
       }
    }
    
+   /*
+      Prints out the people in the stolenList,
+      most recently stolen from first.
+      No output if list is empty.
+   */
    public void printStolenList() {
-      /*
-         This method should print the names of the people in the stolen list, one per line, 
-         indented four spaces, with output of the form "<name> was stolen from by <name>".  
-         It should print the names in reverse order (most recently stolen from first, then 
-         next more recently stolen from, and so on).  It should produce no output if the history 
-         list is empty (no-one has been stolen from yet).
-      */
       if (stolenFront != null) {
          printMessage(" was stolen from by ", stolenFront);
       }         
    }
    
-   public boolean thiefRingContains(String name) {
-      /*
-         This should return true if the given name is in the current thief ring and should 
-         return false otherwise.  It should ignore case in comparing names.
-      */
-      
+   // Returns true if the name is in the thiefRing,
+   // false otherwise. Ignores case in the name.
+   public boolean thiefRingContains(String name) {      
       return doesListContain(name, thiefFront);
    }
    
+   // Returns true if the name is in the stolenList,
+   // false otherwise. Ignores case in the name.
    public boolean stolenListContains(String name) {
-      /*
-         This should return true if the given name is in the current stolen list and should 
-         return false otherwise.  It should ignore case in comparing names.
-      */
-      
       return doesListContain(name, stolenFront);
    }
    
+   // Returns true if there is only one person in 
+   // the thiefRing; false otherwise.
    public boolean isGameOver() {
-      /*
-         This should return true if the game is over (i.e., if the thief ring has just one 
-         person in it) and should return false otherwise.
-      */
-      
       return thiefFront.next == thiefFront;
    }
    
-   public String winner() {
-      /*
-         This should return the name of the winner of the game.  It should return null 
-         if the game is not over.
-      */
-      
-      return thiefFront.next == null ? thiefFront.name : null;
+   // Returns the name of the winner if there is
+   // only one person in the thiefRing; null
+   // otherwise.
+   public String winner() {      
+      return thiefFront.next == thiefFront ? thiefFront.name : null;
    }
    
-   // Takes in the victims name. Moves the victims name to the stolen list, and updates
-   // the thief ring.
+   // Takes in the victims name. Moves the 
+   // victims name to the front of the stolen
+   // list, and updates the thief ring.
    public void steal(String name) {    
       if (isGameOver()) {
-         throw new IllegalStateException("The game is over, you cannot continue to steal!");
+         throw new IllegalStateException("The game "
+            + "is over, you cannot continue to steal!");
       }
       if (!thiefRingContains(name)) {
-         throw new IllegalArgumentException("The name provided isn't part of the current theif ring!");
+         throw new IllegalArgumentException("The name "
+            + "provided isn't part of the current theif ring!");
       }
       
       PlayerNode current = thiefFront;
       String noCaseName = current.next.name.toLowerCase();
       
+      // Current count of how many thieves
+      // are in the thiefRing.
+      int currentThiefCount = countThieves(thiefFront);
+      
+      // Used to see how far into the
+      // thiefRing the stealing thief is.
+      int thisThiefIdx = 0;
+      
+      // Flag for the thief being in the
+      // middle of the thiefRing.
+      boolean isMiddle = false;
+      
       // 1.) Move to thief
-      while (current.next != thiefFront && !noCaseName.equals(name.toLowerCase())) {
+      while (current.next != thiefFront 
+             && !noCaseName.equals(name.toLowerCase())) {
          current = current.next;
          noCaseName = current.next.name.toLowerCase();
+         thisThiefIdx++;
       }
+      
+      System.out.println("Current Thief: " + current.name);
       
       // 2.) Add thiefs name to victims thief field
       if (current.next == thiefFront) {
@@ -128,54 +134,59 @@ public class GameManager {
       }
       
       // 3.) Move victim to stolenList
+      if (thisThiefIdx < currentThiefCount) {
+         isMiddle = true;
+      }
       
-      // First steal
-      if (stolenFront == null) {
-         // The last theif
-         if (current.next == thiefFront) {
-            stolenFront = thiefFront;
-            thiefFront = thiefFront.next;
-            stolenFront.next = null;
-         }
-         // Not last thief
-         else {
-            stolenFront = current.next;
-            current.next = current.next.next;
-            stolenFront.next = null;
-         }
-      }
-      // Not first steal
-      else {
-      // Why is code making the lists the same thing?
-         PlayerNode temp = stolenFront;
-         PlayerNode temp2 = current.next;
-         current.next = current.next.next;
-         stolenFront = temp2;
-         stolenFront.next = temp;
-         stolenFront.next.next = null;
-         
-         
-         PlayerNode temp3 = thiefFront;
-         while (temp3.next != null) {
-            temp3 = temp3.next;
-         }
-         
-         temp3.next = current;
-         
-      /* Good Code Below Don't Delete!
-         PlayerNode currentStolen = stolenFront;
-         while (currentStolen.next != null) {
-            currentStolen = currentStolen.next;
-         }
-         
-         currentStolen.next = current.next;
-         current.next = current.next.next;
-         currentStolen.next.next = null;
-*/
-      }
-  }
+      addToFrontOfStolenList(
+         removeFromThiefRing(current, name, isMiddle)
+      );      
+   }
    
    // Helper Methods
+   
+   // Removes a name (node) from the linked list
+   private PlayerNode removeFromThiefRing(PlayerNode thiefNode, 
+                      String name, boolean isMiddle) {
+      // the victim being cut out
+      PlayerNode victim = thiefNode.next; 
+      
+      // Move link the thief to the thief after the victim
+      thiefNode.next = thiefNode.next.next;
+           
+      // Update the thiefFront
+      if (thiefNode.next == thiefFront.next && !isMiddle) {
+         thiefFront = thiefFront.next;
+      }
+      else if (thiefNode.next != thiefFront) {
+         thiefFront = thiefNode;
+      } 
+      
+      // Make sure the victim has no ties to
+      // the thiefRing.
+      victim.next = null;
+      
+      return victim;
+   }
+   
+   // Adds a name (node) to the linked list
+   private void addToFrontOfStolenList(
+                  PlayerNode nodeToAdd) {
+      PlayerNode temp = stolenFront;
+      stolenFront = nodeToAdd;
+      stolenFront.next = temp;
+   }
+   
+   private int countThieves(PlayerNode firstThief) {
+      int count = 0;
+      PlayerNode current = firstThief;
+      while (current.next != firstThief) {
+         count++;
+         current = current.next;
+      }
+      
+      return count;
+   }
    
    /* Depends on the list front node it gets on where the message
       ends up in the prinln call. The given string is printed out
@@ -187,13 +198,15 @@ public class GameManager {
       // Check to see which Linked list it's handed
       if (frontNode == thiefFront) {
          // Prints out the message if there is a winner.
-         if (frontNode.next == null) {
+         if (frontNode.next == frontNode) {
             System.out.println("    " + frontNode.name + msg);
          }
          // Walk the list printing out who is stealing from whom.
          else {            
-            while (current.next != frontNode && current.next != null) {               
-               System.out.println("    " + current.name + msg + current.next.name);
+            while (current.next != frontNode 
+                   && current.next != null) {               
+               System.out.println("    " 
+                     + current.name + msg + current.next.name);
                if (current.next != null) {
                   current = current.next;
                }
@@ -216,49 +229,32 @@ public class GameManager {
    // Returns false if the list doesn't contain the name, and true if
    // it does. A name and a lists' front node is passed in.
    private boolean doesListContain(String name, PlayerNode frontNode) {
-      if (frontNode == null) {
+      if (frontNode == null || name == null) {
          return false;
       }
       
       PlayerNode current = frontNode;      
       // String variable added for readability
       String currentName = current.name.toLowerCase();
+      boolean checkedAll = false;
       
-      while (current != null) {
+      while (!checkedAll) {
          if (currentName.equals(name.toLowerCase())) {
             return true;
-         }         
-         current = current.next;
-         currentName = current.name.toLowerCase();
+         }
+         else {
+            current = current.next;
+            
+            if (current == null || current == frontNode) {
+               checkedAll = true;
+            }
+            else {
+               currentName = current.name.toLowerCase();
+            }
+         }
       }
       
       return false;
-   }
-   
-   
-   public static void main(String[] args) {
-      List<String> nameList = new ArrayList<String>();
-      nameList.add("Bryan");
-      nameList.add("Meghan");
-      nameList.add("Zoe");
-      GameManager newGame = new GameManager(nameList);
-      //newGame.printThiefRing();
-      
-      // Asserts for contains methods
-      /*assert newGame.thiefRingContains("Meghan") : "Something went wrong in thiefRingContains";
-      assert newGame.thiefRingContains("Bryan") : "Something went wrong in thiefRingContains";
-      assert newGame.thiefRingContains("Zoe") : "Something went wrong in thiefRingContains";
-      assert !newGame.thiefRingContains("Bob") : "Something went wrong in thiefRingContains";
-      assert !newGame.stolenListContains("Bryan") : "Something went wrong in stolenListContains";*/
-      
-      
-      newGame.steal("Zoe");
-      newGame.printThiefRing();
-      newGame.printStolenList();
-      
-      newGame.steal("Bryan");
-      newGame.printThiefRing();
-      newGame.printStolenList();
    }
    
    
