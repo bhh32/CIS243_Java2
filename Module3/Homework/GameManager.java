@@ -43,11 +43,11 @@ public class GameManager {
          is the Prince of Thieves!". (Note, RobinHood never calls printThiefRing once the game 
          is won, so you have to test for this behavior yourself.)
       */
-      if (thiefFront.next != thiefFront) {
+      if (thiefFront.next != null) {
          printMessage(" will steal from ", thiefFront);
       }
       else {
-         printMessage(" is Robin Hood!", thiefFront);
+         printMessage(" is the Prince of Thieves!", thiefFront);
       }
    }
    
@@ -131,57 +131,49 @@ public class GameManager {
       
       // First steal
       if (stolenFront == null) {
-         // Last in thief ring
+         // The last theif
          if (current.next == thiefFront) {
             stolenFront = thiefFront;
             thiefFront = thiefFront.next;
+            stolenFront.next = null;
          }
-         // Not last in thief ring
+         // Not last thief
          else {
             stolenFront = current.next;
             current.next = current.next.next;
+            stolenFront.next = null;
          }
-         
-         // Ensure that the first node.next is null
-         // to break the dependency of the thief ring.
-         stolenFront.next = null;
       }
       // Not first steal
       else {
-         PlayerNode stolenCurrent = stolenFront;
+      // Why is code making the lists the same thing?
+         PlayerNode temp = stolenFront;
+         PlayerNode temp2 = current.next;
+         current.next = current.next.next;
+         stolenFront = temp2;
+         stolenFront.next = temp;
+         stolenFront.next.next = null;
          
-         // Get last stolen node
-         while (stolenCurrent.next != null) {
-            stolenCurrent = stolenCurrent.next;
+         
+         PlayerNode temp3 = thiefFront;
+         while (temp3.next != null) {
+            temp3 = temp3.next;
          }
          
-         if (stolenCurrent == null) {
-            stolenCurrent = stolenFront;
-         }
-         // Last in thief ring
-         if (current.next == thiefFront) {
-            stolenCurrent.next = thiefFront;
-            thiefFront = thiefFront.next;
-         }
-         // Not last in thief ring
-         else {
-            stolenCurrent.next = current.next;
-            current.next = current.next.next;
-            stolenCurrent.next.next = null;
-            // Swap positions in list to ensure the first node is last
-            PlayerNode temp = stolenCurrent;
-            stolenCurrent = stolenCurrent.next; // Wrong order somehow
-            stolenCurrent.next = null;
+         temp3.next = current;
+         
+      /* Good Code Below Don't Delete!
+         PlayerNode currentStolen = stolenFront;
+         while (currentStolen.next != null) {
+            currentStolen = currentStolen.next;
          }
          
-         
-         
-         
-         // Ensure that the stolen list last node.next
-         // is null to ensure independence from thief ring.
-         //stolenCurrent.next.next = null;
+         currentStolen.next = current.next;
+         current.next = current.next.next;
+         currentStolen.next.next = null;
+*/
       }
-   }
+  }
    
    // Helper Methods
    
@@ -195,7 +187,7 @@ public class GameManager {
       // Check to see which Linked list it's handed
       if (frontNode == thiefFront) {
          // Prints out the message if there is a winner.
-         if (frontNode.next == frontNode) {
+         if (frontNode.next == null) {
             System.out.println("    " + frontNode.name + msg);
          }
          // Walk the list printing out who is stealing from whom.
@@ -244,7 +236,7 @@ public class GameManager {
    }
    
    
-   /*public static void main(String[] args) {
+   public static void main(String[] args) {
       List<String> nameList = new ArrayList<String>();
       nameList.add("Bryan");
       nameList.add("Meghan");
@@ -257,7 +249,7 @@ public class GameManager {
       assert newGame.thiefRingContains("Bryan") : "Something went wrong in thiefRingContains";
       assert newGame.thiefRingContains("Zoe") : "Something went wrong in thiefRingContains";
       assert !newGame.thiefRingContains("Bob") : "Something went wrong in thiefRingContains";
-      assert !newGame.stolenListContains("Bryan") : "Something went wrong in stolenListContains";
+      assert !newGame.stolenListContains("Bryan") : "Something went wrong in stolenListContains";*/
       
       
       newGame.steal("Zoe");
@@ -267,7 +259,7 @@ public class GameManager {
       newGame.steal("Bryan");
       newGame.printThiefRing();
       newGame.printStolenList();
-   }*/
+   }
    
    
    /*******************************************************************/
