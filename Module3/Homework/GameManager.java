@@ -123,8 +123,6 @@ public class GameManager {
          thisThiefIdx++;
       }
       
-      System.out.println("Current Thief: " + current.name);
-      
       // 2.) Add thiefs name to victims thief field
       if (current.next == thiefFront) {
          thiefFront.thief = current.name;
