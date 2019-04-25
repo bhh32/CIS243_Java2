@@ -1,0 +1,43 @@
+    Bryan Hyland
+    CIS143
+    Homework - Robin Hood
+    24Apr19
+
+    How long in hours did you spend on the assignment?
+      
+      Roughly 10 hours due to fixing bugs after starting to test.
+
+    What key Java features or Object Oriented concepts did this help you understand (or review, if you already have some programming experience)?
+      
+      Code reusability was key for this one. I made a few helper methods that allowed me to do the job of the core methods with writing less code.
+
+    What resources did you use to solve this? (Textbook, class information, tutors, office hours, websites, other?) Provide URLs to websites if used.
+      
+      No resources other than asking questions in class or through email.
+      
+    What vagueness can you identify in the specification or missing checks in the tests provided? 
+    What testing or validation did you do to see if your program behaved as expected?
+    
+      I didn't see anything in the JUnit tests that were missed, and the specifications were very clear.
+      
+    It is often the case that their checks leave out some case, or that their specifications are not 
+    water-tight but open to interpretation. Give this some thought, as identifying the cracks in a 
+    specification or set of tests is a key software developer skill.
+
+      I honestly can't see anything that needed to be added or tested any differently for this particular game.
+      
+    What parts of your code could use improvement or disappointed you (what work didn’t you get done, 
+    that more time would have enabled you to finish, or what bugs did you not resolve)? Note any 
+    remaining questions you may have on the assigned items or the material from the chapter here.
+    
+      I had a very strange bug when testing on the testFirstPlayer() JUnit test that even though they were printing
+      in the correct order, I'd continue to fail the test because of an [is] that randomly showed up in the test
+      expected results, but not my results. I rebooted the computer and it went away. I didn't figure out what was
+      causing it.
+
+    Which part of your work on this are you the most pleased about?
+    
+      The two helper functions removeFromThiefRing() and addToFrontOfStolenList(). I was having a very hard time
+      moving the victim from the thiefRing to the stolenList in the proper order, so breaking it up between the
+      two methods made it much more managable. Breaking it into two separate problems was easier than tackling
+      it all in one go.

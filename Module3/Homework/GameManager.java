@@ -47,7 +47,7 @@ public class GameManager {
          printMessage(" will steal from ", thiefFront);
       }
       else {
-         printMessage(" is the Prince of Thieves!", thiefFront);
+         printMessage(" is The Prince of Thieves!", thiefFront);
       }
    }
    
@@ -234,6 +234,9 @@ public class GameManager {
       PlayerNode current = frontNode;      
       // String variable added for readability
       String currentName = current.name.toLowerCase();
+      
+      // Flag for checking if all nodes have
+      // been checked.
       boolean checkedAll = false;
       
       while (!checkedAll) {
@@ -242,7 +245,7 @@ public class GameManager {
          }
          else {
             current = current.next;
-            
+            //  For stealList       for thiefRing
             if (current == null || current == frontNode) {
                checkedAll = true;
             }
