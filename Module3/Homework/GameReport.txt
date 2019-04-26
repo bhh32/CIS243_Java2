@@ -40,4 +40,4 @@
       The two helper functions removeFromThiefRing() and addToFrontOfStolenList(). I was having a very hard time
       moving the victim from the thiefRing to the stolenList in the proper order, so breaking it up between the
       two methods made it much more managable. Breaking it into two separate problems was easier than tackling
-      it all in one go.
+      it all in one go. 
