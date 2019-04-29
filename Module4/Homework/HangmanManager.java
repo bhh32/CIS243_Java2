@@ -1,68 +1,57 @@
+import java.util.*;
+
 public class HangmanManager {
-   private guessesLeft;
+   private int guessesLeft;
+   public Set<String> wordList = new TreeSet<String>();
+   public Set<Character> guesses = new TreeSet<Character>();
+   private String pattern = "";
+   public String chosenWord = "";
    
    public HangmanManager(Collection<String> dictionary, int length, int max) {
-      /*
-         Your constructor is passed a dictionary of words, 
-         a target word length, and the maximum number of wrong 
-         guesses the player is allowed to make. It should use 
-         these values to initialize the state of the game. 
-         The set of words should initially contain all words 
-         from the dictionary of the given length. It should 
-         throw an IllegalArgumentException if length is less 
-         than 1 or if max is less than 0.
-
-         You may assume that the list of words passed to your 
-         constructor will be a non-empty list of non-empty 
-         strings composed entirely of lowercase letters.
-      */
+      
+      // 1.) Throw Exceptions
+      if (length < 1 || max < 0) {
+         throw new IllegalArgumentException("Either length was less than 1, or max was "
+         + "less than 0. Length: " + length + " Max: " + max);
+      }
+      
+      // Set the max amount of guesses
+      guessesLeft = max;
+      
+      // Walk the dictionary to create the wordList Set
+      for (String word : dictionary) {
+         if (word.length() == length) {
+            wordList.add(word);
+         }
+      }
+      
+      updatePattern(length);
    }
    
    public Set<String> words() {
-      /*
-         The client calls this method to get access 
-         to the current set of words being considered 
-         by the HangmanManager instance. Do not leak 
-         internal state (see what this means below - 
-         it is often overlooked!).
-      */
+      Set<String> wordList = new TreeSet<String>(this.wordList);
+      
+      return wordList;
    }
    
    public int guessesLeft() {
-      /*
-         The client calls this method to 
-         find out how many guesses the player 
-         has left.
-      */
+      int guessesLeft = this.guessesLeft;
+      return guessesLeft;
    }
    
    public Set<Character> guesses() {
-      /*
-         The client calls this method to 
-         find out the current set of letters 
-         that have been guessed by the user. 
-         Do not leak internal state (see what 
-         this means below - it is often overlooked!).
-      */
+      
+      Set<Character> guesses = new TreeSet<Character>(this.guesses);
+      
+      return guesses;
    }
    
-   public String pattern() {
-      /*
-         This should return the current pattern to 
-         be displayed for the hangman game taking 
-         into account guesses that have been made.  
-         Letters that have not yet been guessed should 
-         be displayed as a dash.  There should be no 
-         leading or trailing spaces. This operation 
-         should be "fast" in the sense that it should 
-         store the pattern rather than computing it 
-         each time the method is called. This method 
-         should throw an IllegalStateException if the 
-         set of words is empty.
-
-         Note: Save the pattern to avoid recomputation.
-      */
-   
+   public String pattern() {      
+      if (words().isEmpty()) {
+         throw new IllegalArgumentException("The word list is empty!");
+      }      
+      
+      return pattern;
    }
    
    public int record(char guess) {
@@ -83,5 +72,113 @@ public class HangmanManager {
       
          Note: Alphabetically means towards key, not value!
       */
+      
+      // 1.) Throw Exceptions
+      if (guessesLeft < 1 || words().isEmpty()) {
+         throw new IllegalStateException("Either you're out of guesses or the wordList is empty, Guesses Left: " 
+         + guessesLeft + " wordList empty: " + words().isEmpty());
+      }
+      
+      if (!words().isEmpty() && guesses.contains(guess)) {
+         throw new IllegalArgumentException("You have already guessed this letter: " + guess);
+      }
+      
+      // 1.) Set the map to the current pattern and wordList
+      Map<String, Set<String>> familyMap = new TreeMap<String, Set<String>>();
+      familyMap.put(pattern(), words());
+      
+      // 2.) Sort between words that do and don't have the guess
+      Set<String> doesHave = new TreeSet<String>();
+      Set<String> doNotHave = new TreeSet<String>();
+      for (String word : words()) {
+         if (word.contains(new Character(guess).toString())) {
+            doesHave.add(word);
+         }
+         else {
+            doNotHave.add(word);
+         }
+      }
+      
+      
+      return -1;
+   }
+   
+   // Helper Methods
+   
+   // Updates the word pattern
+   public void updatePattern(int length) {
+      if (!pattern.equals("")) {
+         // 1.) Get the current pattern and make it an array
+         char[] chosenArray = pattern.toCharArray();
+         
+         // 2.) Ensure that the chosen words space pattern is the
+         //     same as the current patterns.
+         String wordTemp = null;
+         for (int k = 0; k < chosenWord.length(); ++k) {
+            if (k == 0) {
+               wordTemp = new String(new Character(chosenWord.charAt(k)).toString() + " ");
+            }
+            else {
+            wordTemp += chosenWord.charAt(k) + " ";
+            }
+         }
+                  
+         wordTemp = wordTemp.trim();
+         
+         // 3.) Loop through the pattern array adding the
+         //     guesses to it if they're part of the chosen
+         //     word.
+         for (int j = 0; j < chosenWord.length(); ++j) {
+            if (guesses.contains(wordTemp.charAt(j))) {
+               chosenArray[j] = wordTemp.charAt(j);
+            }
+         }
+         
+         // 4.) Set the pattern to the updated array
+         pattern = new String(chosenArray);      
+      }
+      // Initial pattern building
+      else {
+         for (int i = 0; i < length; ++i) {
+            if (i == 0 || i == (length - 1) / 2 
+                || i == length - 1) {
+               pattern += "_";
+            }
+            else {
+               pattern += " _ ";
+            }
+         }
+      }      
+   }
+   
+   
+   
+   // Test main method
+   public static void main(String[] args) {
+      List<String> words = new ArrayList<>();
+      words.add("brain");
+      words.add("lists");
+      words.add("that");
+      words.add("a");
+      words.add("supercalifragolistic");
+      HangmanManager hm = new HangmanManager(words, 5, 10);
+      System.out.println(hm.wordList);
+      hm.chosenWord = new String("brain");
+      hm.guesses.add('c');
+      hm.guesses.add('b');
+      hm.updatePattern(5);
+      System.out.println(hm.pattern());
+      
+      hm.guesses.add('a');
+      hm.updatePattern(5);
+      System.out.println(hm.pattern());
+      
+      hm.guesses.add('r');
+      hm.updatePattern(5);
+      System.out.println(hm.pattern());
+      
+      hm.guesses.add('e');
+      hm.updatePattern(5);
+      System.out.println(hm.pattern());
    }
 }
