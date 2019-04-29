@@ -99,7 +99,13 @@ public class HangmanManager {
          }
       }
       
-      
+      // 3.) Check which is longer
+      if (doNotHave.size() > doesHave.size()) {
+         wordList = new TreeSet<String>(doNotHave);
+      }
+      else {
+         // TODO: Figure out what to do next
+      }
       return -1;
    }
    
