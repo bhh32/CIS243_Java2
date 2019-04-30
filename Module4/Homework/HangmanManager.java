@@ -25,7 +25,7 @@ public class HangmanManager {
          }
       }
       
-      updatePattern(length);
+      pattern = updatePattern(length);
    }
    
    public Set<String> words() {
@@ -105,14 +105,43 @@ public class HangmanManager {
       }
       else {
          // TODO: Figure out what to do next
+         // 4.) Since doesHave is longer
+         // Create more sets to find out how many each
+         // particular "family" sets have the character n amount of times.
+         
+         // Map the possible solutions
+         Map<String, Set<String>> possibilities = getPossibilities(doesHave);
+         
+         // Create a list of keys         
+         List<String> patterns = new ArrayList<String>(possibilities.keySet());
+         
+         // Get the best key
+         String bestPattern = getBestPattern(possibilities, patterns);
+         
+         
+         
+         // Update the pattern
+         pattern = updatePattern(bestPattern.length(), bestPattern);
+         
+         // Update the word list
+         wordList = possibilities.get(pattern);
+         
+         // Update the chosen word when the wordList is size 1
+         /*if (wordList.size() == 1) {
+            chosenWord = possibilities.get(pattern);
+         }*/
+         
+         guessesLeft--;
       }
-      return -1;
+      return guessesLeft;
    }
    
    // Helper Methods
    
-   // Updates the word pattern
-   public void updatePattern(int length) {
+   // Updates the word pattern if there is no chosen word
+   // or if we're first creating a pattern.
+   private String updatePattern(int length) {
+      String tempPattern = new String();
       if (!pattern.equals("")) {
          // 1.) Get the current pattern and make it an array
          char[] chosenArray = pattern.toCharArray();
@@ -141,26 +170,96 @@ public class HangmanManager {
          }
          
          // 4.) Set the pattern to the updated array
-         pattern = new String(chosenArray);      
+         tempPattern = new String(chosenArray);      
       }
       // Initial pattern building
       else {
          for (int i = 0; i < length; ++i) {
             if (i == 0 || i == (length - 1) / 2 
                 || i == length - 1) {
-               pattern += "_";
+               tempPattern += "_";
             }
             else {
-               pattern += " _ ";
+               tempPattern += " _ ";
             }
          }
-      }      
+      }  
+      
+      return tempPattern;    
    }
    
+   private String updatePattern(int length, String tempChosenWord) {
+      String tempPattern = new String();
+      
+      // 1.) Get the current pattern and make it an array
+      char[] chosenArray = pattern.toCharArray();
+         
+      // 2.) Ensure that the chosen words space pattern is the
+      //     same as the current patterns.
+      String wordTemp = null;
+      for (int k = 0; k < tempChosenWord.length(); ++k) {
+         if (k == 0) {
+            wordTemp = new String(new Character(tempChosenWord.charAt(k)).toString() + " ");
+         }
+         else {
+            wordTemp += tempChosenWord.charAt(k) + " ";
+         }
+      }
+                  
+      wordTemp = wordTemp.trim();
+         
+      // 3.) Loop through the pattern array adding the
+      //     guesses to it if they're part of the chosen
+      //     word.
+      for (int j = 0; j < tempChosenWord.length(); ++j) {
+         if (guesses.contains(wordTemp.charAt(j))) {
+            chosenArray[j] = wordTemp.charAt(j);
+         }
+      }
+         
+      // 4.) Set the pattern to the updated array
+      tempPattern = new String(chosenArray);        
+      
+      return tempPattern;    
+   }
    
+   private Map<String, Set<String>> getPossibilities(Set<String> currentSet) {
+      Map<String, Set<String>> possibilities = new TreeMap<String, Set<String>>();
+         
+      while (!currentSet.isEmpty()) {
+         // Get and remove the first word in the set
+         String temp = (String)((TreeSet)currentSet).pollLast();
+         
+         // Update the pattern for that word
+         String tempPattern = updatePattern(temp.length(), temp);
+          
+         if (!possibilities.keySet().contains(tempPattern)) {
+            Set<String> tempSet = new TreeSet<String>();
+            tempSet.add(temp);
+            possibilities.put(tempPattern, tempSet);
+         }
+         else {
+            possibilities.get(tempPattern).add(temp);
+         }
+      }
+      
+      return possibilities;
+   }
+   
+   private String getBestPattern(Map<String, Set<String>> possibilities, List<String> keyList) {
+      String bestPattern = "";
+      for (int i = 0; i < keyList.size(); ++i) {
+         // Compare set sizes
+         if (i + 1 < keyList.size() - 1 && possibilities.get(keyList.get(i)).size() > possibilities.get(keyList.get(i + 1)).size()) {
+            bestPattern = keyList.get(i);
+         }
+      }
+      
+      return bestPattern;
+   }
    
    // Test main method
-   public static void main(String[] args) {
+  /*public static void main(String[] args) {
       List<String> words = new ArrayList<>();
       words.add("brain");
       words.add("lists");
@@ -186,5 +285,5 @@ public class HangmanManager {
       hm.guesses.add('e');
       hm.updatePattern(5);
       System.out.println(hm.pattern());
-   }
+   }*/
 }
