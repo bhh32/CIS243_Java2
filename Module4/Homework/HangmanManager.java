@@ -83,9 +83,8 @@ public class HangmanManager {
          throw new IllegalArgumentException("You have already guessed this letter: " + guess);
       }
       
-      // 1.) Set the map to the current pattern and wordList
+      // 1.) Create the family map for sorting
       Map<String, Set<String>> familyMap = new TreeMap<String, Set<String>>();
-      familyMap.put(pattern(), words());
       
       // 2.) Sort between words that do and don't have the guess
       Set<String> doesHave = new TreeSet<String>();
@@ -102,6 +101,7 @@ public class HangmanManager {
       // 3.) Check which is longer
       if (doNotHave.size() > doesHave.size()) {
          wordList = new TreeSet<String>(doNotHave);
+         familyMap.put(updatePattern(wordList.size()), wordList);
       }
       else {
          // TODO: Figure out what to do next
@@ -110,29 +110,31 @@ public class HangmanManager {
          // particular "family" sets have the character n amount of times.
          
          // Map the possible solutions
-         Map<String, Set<String>> possibilities = getPossibilities(doesHave);
+         familyMap = getPossibilities(doesHave);
          
          // Create a list of keys         
-         List<String> patterns = new ArrayList<String>(possibilities.keySet());
+         List<String> patterns = new ArrayList<String>(familyMap.keySet());
          
          // Get the best key
-         String bestPattern = getBestPattern(possibilities, patterns);
-         
+         String bestPattern = getBestPattern(familyMap, patterns);         
          
          
          // Update the pattern
          pattern = updatePattern(bestPattern.length(), bestPattern);
          
          // Update the word list
-         wordList = possibilities.get(pattern);
+         wordList = familyMap.get(pattern);
          
          // Update the chosen word when the wordList is size 1
          /*if (wordList.size() == 1) {
             chosenWord = possibilities.get(pattern);
          }*/
          
-         guessesLeft--;
+         
       }
+      
+      guessesLeft--;
+      
       return guessesLeft;
    }
    
@@ -192,7 +194,7 @@ public class HangmanManager {
       String tempPattern = new String();
       
       // 1.) Get the current pattern and make it an array
-      char[] chosenArray = pattern.toCharArray();
+      char[] chosenArray = pattern().toCharArray();
          
       // 2.) Ensure that the chosen words space pattern is the
       //     same as the current patterns.
@@ -246,6 +248,7 @@ public class HangmanManager {
       return possibilities;
    }
    
+   // Returns the best pattern to use
    private String getBestPattern(Map<String, Set<String>> possibilities, List<String> keyList) {
       String bestPattern = "";
       for (int i = 0; i < keyList.size(); ++i) {
@@ -259,7 +262,7 @@ public class HangmanManager {
    }
    
    // Test main method
-  /*public static void main(String[] args) {
+  public static void main(String[] args) {
       List<String> words = new ArrayList<>();
       words.add("brain");
       words.add("lists");
@@ -271,19 +274,19 @@ public class HangmanManager {
       hm.chosenWord = new String("brain");
       hm.guesses.add('c');
       hm.guesses.add('b');
-      hm.updatePattern(5);
+      hm.updatePattern(5, "brain");
       System.out.println(hm.pattern());
       
       hm.guesses.add('a');
-      hm.updatePattern(5);
+      hm.updatePattern(5, "brain");
       System.out.println(hm.pattern());
       
       hm.guesses.add('r');
-      hm.updatePattern(5);
+      hm.updatePattern(5, "brain");
       System.out.println(hm.pattern());
       
       hm.guesses.add('e');
-      hm.updatePattern(5);
+      hm.updatePattern(5, "brain");
       System.out.println(hm.pattern());
-   }*/
+   }
 }
