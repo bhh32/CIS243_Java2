@@ -1,0 +1,12 @@
+<sentence> ::= <noun part> <verb part>
+<noun part> ::= <person> | <place> | <article> <adjp> <thing>
+<person> ::= Bill | Ted | J-Lo | John Conner
+<place> ::= Mars | Jupiter | Detroit | 12-227 | Earth
+<things> ::= laptop | router | monitor | rubber duck
+<article> ::= the | a | an | some | lotsa
+<verb part> ::= <transitive verb> <noun part> | <intransitive verb> | <being verb> <adjp>
+<being verb> ::= is | was
+<transitive verb> ::= punched | jumped | complimented | saved
+<intransitive verb> ::= wandered | laughed | slept | ran
+<adj> ::= green | angry | tall | happy | smelly
+<adjp> ::= <adj> | <adj> <adjp>

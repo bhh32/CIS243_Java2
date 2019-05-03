@@ -11,8 +11,8 @@ import java.util.*;
 import java.io.*;
 
 public class HangmanMain {
-	public static final String DICTIONARY_FILE = "dictionary-tiny.txt";
-	public static final boolean SHOW_COUNT = true; // show words left
+	public static final String DICTIONARY_FILE = "dictionary.txt";
+	public static final boolean SHOW_COUNT = false; // show words left
 
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println("Welcome to the cs143 hangman game.");
