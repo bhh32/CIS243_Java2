@@ -12,18 +12,37 @@ public class LabWeek5 {
       + "negative!");
     }
 
-    // Get the longer numbers size
-    int longest = new String(num1).size() >= new String(num2).size()
-      ? new String(num1).size() : new String(num2).size();
-
     // call recursive version
-    return digitDiff(num1, num2, longest, 0);
+    return _digitDiff(num1, num2);
   }
 
-  private static int digitDiff(int num1, int num2, int longest, int index) {
-    int diff = 0;
-
-    return diff;
+  private static int _digitDiff(int num1, int num2) {
+      int diff = 0;
+      int num1Length = new String(new Integer(num1).toString()).length();
+      int num2Length = new String(new Integer(num2).toString()).length();
+      int num1Rest = num1 / 10;
+      int num1Last = num1 % 10;
+      int num2Rest = num2 / 10;
+      int num2Last = num2 % 10;
+    
+    // Base case for last number same length
+    if (num1 == num2 && num1Rest == 0 && num2Rest == 0) {
+      return diff;
+    }
+    
+    // Increment diff one last time on the last pass
+    if (num1Length == 1 && num2Length == 1
+            && num1Rest == 0 && num2Rest == 0) {
+         return ++diff;        
+    }   
+    
+    // Add one to diff if they aren't the same
+    if (num1Last != num2Last) {
+      diff++;
+    }
+    
+    // Add to and return diff with the recursive call
+    return diff += _digitDiff(num1Rest, num2Rest);
   }
 
 
@@ -39,7 +58,7 @@ public class LabWeek5 {
       num = -num;
     }
 
-    _addDashes(n);
+    _addDashes(num);
   }
 
   /* This is the recursive version of _addDashes. I checks to see if num is a
@@ -60,4 +79,19 @@ public class LabWeek5 {
       _addDashes(rest);
     }
   }
+  
+  public static void main(String[] args) {
+     // Test Negative number addDashes
+     addDashes(-12); // Output -1-2
+     
+     System.out.println();
+     
+     // Test Zero addDashes
+     addDashes(0); // 0
+     
+     System.out.println();
+     
+     // Test Positive number addDashes
+     addDashes(456789); // 4-5-6-7-8-9
+  }                                      
 }
