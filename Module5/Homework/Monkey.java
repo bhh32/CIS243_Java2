@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Monkey {
+  private Map<String, Set<String>> langMap = new TreeMap<String, Set<String>>();
+  
   public Monkey(List<String> grammar) {
     /*
       This method will be passed a grammar as a list of strings.  Each string is
@@ -16,7 +18,39 @@ public class Monkey {
       then later has the line "s ::= sam|jim", your class should treat it the
       same as if it originally got the rule "s ::= sally|bob|sam|jim".
     */
-
+    if (grammar == null || grammar.isEmpty()) {
+      throw new IllegalArgumentException("The list is null or empty!");
+    }
+    
+    for (String rule : grammar) {
+      String[] splitString = rule.split("::=");
+      String nonTerminal = splitString[0].trim();
+      
+      // Set the non-terminals as keys for the language map
+      if (!langMap.keySet().contains(splitString[0])) {
+         langMap.put(nonTerminal, new TreeSet());
+      }
+      
+      // Split the Rules up into an array
+      splitString = splitString[1].split("[ |]+");
+      
+      // Add the ules to the map for the nonTerminal
+      for (String rules : splitString) {
+         rules.replace("[<>]", ""); // If it's a nonTerminal rule
+         langMap.get(nonTerminal).add(rules);
+      }      
+    }
+    
+    /* Debugging For Constructor To Make Sure Things A Placed Correctly
+    System.out.println("non-terminals: " + langMap.keySet());
+      
+    List<String> terminals = new ArrayList<String>(langMap.keySet());
+    Set<String> rules;
+      
+    for (int i = 0; i < terminals.size(); ++i) {
+       rules = new TreeSet(langMap.get(terminals.get(i)));
+       System.out.println(terminals.get(i) + ": " + rules);
+    }*/      
 
   }
 
@@ -30,7 +64,15 @@ public class Monkey {
       true and isNonTerminal("swim") or isNonTerminal("boy") would return false.
       Note swim is not used in the language, and boy is used as a terminal.
     */
-    return false;
+    if (symbol == null || symbol.length() < 1) {
+      throw new IllegalArgumentException("A null or empty string was passed in!");
+    }
+    
+    if (!langMap.keySet().contains(symbol)) {
+      return false;
+    }
+    
+    return true;
   }
 
   // Hardest method to write
@@ -55,7 +97,30 @@ public class Monkey {
     For example, calling getRandom("sentence") could possibly return
     (as influenced by the random choices made): "the boy walks" or "a boy runs".
     */
-    return new String();
+    if (nonterminal == null || !langMap.keySet().contains(nonterminal)) {
+      throw new IllegalArgumentException("The given String was either null"
+         + " or not a nonterminal in the language!");
+    }
+    
+    // 1.) Create the sentence string to add to
+    String sentence = new String();
+    
+    // 2.) Get the rules for the non-terminal
+    Set<String> rules = langMap.get(nonterminal);
+    
+    // 3. Build the sentence
+    // foreach rule, if it is a non terminal call getRandom
+    // for that rule
+    for (String rule : rules) {
+      if (!langMap.keySet().contains(rule)) {
+         sentence += " " + rule;
+      }
+      else {
+         sentence += " " + getRandom(rule);
+      }
+    }
+    
+    return sentence.trim();
   }
 
   public String toString() {
@@ -67,6 +132,7 @@ public class Monkey {
     For example, calling toString() for the example grammar above would
     return: "[article, noun, noun_phrase, sentence, verb]"
     */
-    return new String();
+    List<String> nonTerminals = new ArrayList<String>(langMap.keySet());
+    return nonTerminals.toString();
   }
 }
