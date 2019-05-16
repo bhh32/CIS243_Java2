@@ -1,138 +1,148 @@
 import java.util.*;
-
+/*
+   Author: Bryan Hyland
+   Date:   6May19
+   Homework: Module 5, MonkeyTypewriter
+   
+   This class creates a language map that includes
+   the non-terminals and their rules. A random word/phrase
+   is built up based upon the rules of the language that
+   is passed into it.
+*/
 public class Monkey {
-  private Map<String, Set<String>> langMap = new TreeMap<String, Set<String>>();
+   // Holds the language non-terminals and their rules.
+   private Map<String, Set<String>> langMap = 
+      new TreeMap<String, Set<String>>();
   
-  public Monkey(List<String> grammar) {
-    /*
-      This method will be passed a grammar as a list of strings.  Each string is
-      one BNF rule. You should use regular expressions (see below) to break
-      apart the rules and store them into a Map so that you can look up parts
-      of the grammar efficiently later. You should not modify the list passed
-      in. You should throw an IllegalArgumentException if grammar is null or an
-      empty list.
-
-      If the grammar contains more than one line for the same non-terminal, the
-      rule in the grammar for that non-terminal should be the concatenation of
-      all of them. For example, if a grammar has a line "s ::= sally|bob" and
-      then later has the line "s ::= sam|jim", your class should treat it the
-      same as if it originally got the rule "s ::= sally|bob|sam|jim".
-    */
-    if (grammar == null || grammar.isEmpty()) {
-      throw new IllegalArgumentException("The list is null or empty!");
-    }
-    
-    for (String rule : grammar) {
-      String[] splitString = rule.split("::=");
-      String nonTerminal = splitString[0].trim();
-      
-      // Set the non-terminals as keys for the language map
-      if (!langMap.keySet().contains(splitString[0])) {
-         langMap.put(nonTerminal, new TreeSet());
+  /*
+     Constructs the langMap by taking in a list of Strings.
+     Each element in the list is broken up between non-terminals
+     and their rules. The non-terminals are the keys in the map.
+     The rules are a set of that non-terminal key. Throws an 
+     IllegalArgumentException if the list is null or empty. There
+     is a nested loop, but it doesn't seem to affect efficiency
+     very much.
+  */
+   public Monkey(List<String> grammar) {
+      if (grammar == null || grammar.isEmpty()) {
+         throw new IllegalArgumentException("The list is null or empty!");
       }
+      List<String[]> ruleList = new ArrayList<String[]>();
+      int ruleListIndex = 0;
+      for (String rule : grammar) {
+         String[] splitString = rule.split("::=");
+         String nonTerminal = splitString[0].trim();
       
-      // Split the Rules up into an array
-      splitString = splitString[1].split("[ |]+");
+         // Set the non-terminals as keys for the language map
+         if (!langMap.keySet().contains(splitString[0])) {
+            langMap.put(nonTerminal, new TreeSet<String>());
+         }
       
-      // Add the ules to the map for the nonTerminal
-      for (String rules : splitString) {
-         rules.replace("[<>]", ""); // If it's a nonTerminal rule
-         langMap.get(nonTerminal).add(rules);
-      }      
-    }
+         // Split the Rules up into an array for processing
+         splitString = splitString[1].split("[|]+");
+      
+         // Add the rules to the map for the nonTerminal
+         for (String rules : splitString) {
+            langMap.get(nonTerminal).add(rules.trim());
+         }     
+      }
+   }
+  
+   /* Returns true if symbol is a non-terminal,
+      and false if it is a terminal or not in the
+      language. Throws an IllegalArgumentException 
+      if the String is null or empty.
+   */
+   public boolean isNonTerminal(String symbol) {
+      if (symbol == null || symbol.length() < 1) {
+         throw new IllegalArgumentException("A null "
+         + "or empty string was passed in!");
+      }
     
-    /* Debugging For Constructor To Make Sure Things A Placed Correctly
-    System.out.println("non-terminals: " + langMap.keySet());
-      
-    List<String> terminals = new ArrayList<String>(langMap.keySet());
-    Set<String> rules;
-      
-    for (int i = 0; i < terminals.size(); ++i) {
-       rules = new TreeSet(langMap.get(terminals.get(i)));
-       System.out.println(terminals.get(i) + ": " + rules);
-    }*/      
-
-  }
-
-  public boolean isNonTerminal(String symbol) {
-    /*
-      Returns true if the given symbol is a non-terminal of the grammar; returns
-      false otherwise. You should throw an IllegalArgumentException if the string
-      is null or has length 0.
-
-      For example, for the grammar above, isNonTerminal("sentence") would return
-      true and isNonTerminal("swim") or isNonTerminal("boy") would return false.
-      Note swim is not used in the language, and boy is used as a terminal.
-    */
-    if (symbol == null || symbol.length() < 1) {
-      throw new IllegalArgumentException("A null or empty string was passed in!");
-    }
+      if (!langMap.keySet().contains(symbol)) {
+         return false;
+      }
     
-    if (!langMap.keySet().contains(symbol)) {
-      return false;
-    }
-    
-    return true;
-  }
+      return true;
+   }
 
-  // Hardest method to write
-  // Will require recursion
-  // Use Random class not Math.random().
-  // Close to addDash in the lab, but not exact!
-  // Look at Crawler (directory recursion) for ideas for recursion.
-  public String getRandom(String nonterminal) {
-    /*
-    This method generates a transformation of the given non-terminal into a
-    string containing only terminals and returns it.
-
-    If nonterminal is not a non-terminal in your grammar or it is null, you
-    should throw an IllegalArgumentException.
-
-    If nonterminal is a non-terminal in your grammar, you should apply one of
-    its rules (each with equal probability). Use the Random class in java.util
-    to help you make random choices between rules. Do not use Math.random().
-    You must keep applying rules until you have a string containing only
-    terminals.`More on this below.
-
-    For example, calling getRandom("sentence") could possibly return
-    (as influenced by the random choices made): "the boy walks" or "a boy runs".
-    */
-    if (nonterminal == null || !langMap.keySet().contains(nonterminal)) {
-      throw new IllegalArgumentException("The given String was either null"
+   /*
+     Throws an IllegalArgumentException if nonterminal
+     is null or is a terminal. Builds and returns a 
+     "sentence" based on the rules of the language for
+     the nonterminal it is passed. Uses a helper method
+     called getWordPhase() to recurse and build the 
+     sentence.
+   */
+   public String getRandom(String nonterminal) {
+      if (nonterminal == null || !isNonTerminal(nonterminal)) {
+         throw new IllegalArgumentException("The given String was either null"
          + " or not a nonterminal in the language!");
-    }
-    
-    // 1.) Create the sentence string to add to
-    String sentence = new String();
-    
-    // 2.) Get the rules for the non-terminal
-    Set<String> rules = langMap.get(nonterminal);
-    
-    // 3. Build the sentence
-    // foreach rule, if it is a non terminal call getRandom
-    // for that rule
-    for (String rule : rules) {
-      if (!langMap.keySet().contains(rule)) {
-         sentence += " " + rule;
       }
+    
+      // 1.) Create the sentence string to add to
+      String sentence = new String();
+    
+      // 2.) Get the rules for the non-terminal
+      List<String> rules = new ArrayList<String>(langMap.get(nonterminal));
+  
+      // 3.) Get a random rule to apply
+      sentence += getWordPhrase(rules);   
+        
+      return sentence;
+   }
+  
+   // Returns a String with of all of the
+   // nonterminals.
+   public String toString() {
+      List<String> nonTerminals = 
+         new ArrayList<String>(langMap.keySet());
+      return nonTerminals.toString();
+   }
+  
+   // Helper Methods
+  
+   /*
+      Does all of the heavy lifting and recursion for
+      getRandom(). Builds a random word/phrase based
+      upon the rules it is handed. It then returns
+      the finished word/phrase back to getRandom().
+      getRandom() is the gatekeeper for this method.
+   */
+   private String getWordPhrase(List<String> rules) {
+      String wordPhrase = new String();
+     
+      // Get a random rule from the list
+      Random rand = new Random();
+      int randIndex = rand.nextInt(rules.size());
+      String rule = rules.get(randIndex);
+     
+      // Create an array to hold the separate rules
+      // if it's a multi tier rule
+      String[] multiRule = rule.split("\\s+");
+     
+      // Check and see if it is a multi tier rule
+      if (multiRule.length > 1) {
+         for (String r : multiRule) {
+            // Check to see if the rule is a terminal
+            if (!isNonTerminal(r)) {
+               wordPhrase += r + " ";
+            }
+            // When it's not a terminal call getRandom again
+            else {
+               wordPhrase += getRandom(r) + " ";
+            }
+         }
+      }
+      // If it's a single tier rule, but not a terminal
+      else if (isNonTerminal(rule)) {
+         wordPhrase += getRandom(rule) + " ";
+      }
+      // A single tier rule and is a terminal
       else {
-         sentence += " " + getRandom(rule);
+         wordPhrase += rule + " ";
       }
-    }
-    
-    return sentence.trim();
-  }
-
-  public String toString() {
-    /*
-    This method should return a string representation of all non-terminal
-    symbols from the grammar in alphabetical order. You will want to use the
-    keySet of your map.
-
-    For example, calling toString() for the example grammar above would
-    return: "[article, noun, noun_phrase, sentence, verb]"
-    */
-    List<String> nonTerminals = new ArrayList<String>(langMap.keySet());
-    return nonTerminals.toString();
-  }
+     
+      return wordPhrase.trim();
+   }
 }

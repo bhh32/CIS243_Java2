@@ -124,4 +124,44 @@ public class ArrayIntList implements IntList {
          throw new IllegalStateException("would exceed list capacity");
       }
    }
+   
+   public void insertAt(int index, int copies, int value) {
+    if (index < 0 || index > size || copies < 0) { throw new IllegalArgumentException(); }
+    if (copies == 0) { return; }
+    size += copies;
+    int count = 1;
+    
+    if (copies == 1) {
+        for (int i = index; i < size; ++i) {
+            int temp = data[i];
+            data[i] = value;
+            value = temp;
+        }
+    }
+    else {
+        for (int i = size - 1; i > index - 1; --i) {
+            int temp = data[i];
+            data[i + 1] = temp;
+               
+            if (i == index && count < copies) {
+                ++count;
+                data[i] = value;
+                i = size - 1;
+            }
+        }
+     }
+   }
+   
+   public static void main(String[] args) {
+      ArrayIntList list = new ArrayIntList();
+      
+      //list.add(10);
+      //list.add(11);
+      //list.add(14);
+      //list.add(19);
+      
+      list.insertAt(0, 5, 1337);
+      
+      System.out.println(list.toString());
+   }
 }

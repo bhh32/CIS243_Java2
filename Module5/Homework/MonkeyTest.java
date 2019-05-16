@@ -186,7 +186,7 @@ public class MonkeyTest {
 		int numbers[] = new int[10]; // 0 through 9, we won't use 0.
 		for (int i = 0; i < 500; i++) {
 			String result = monkey.getRandom("num");
-			int val = Integer.parseInt(result);
+			int val = Integer.parseInt(result.trim());
 			numbers[val]++;
 		}
 		System.out.println("Results of 500 tries: " + Arrays.toString(numbers));

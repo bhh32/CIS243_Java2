@@ -1,0 +1,6 @@
+<movie> ::= <genre> <character> <environment>
+<genre> ::= adventure | horror | chick flick
+<character> ::= Jason | Zoe | Amber | Bryan | Bob | <action> <character> | <character> <action> <character>
+<environment> ::= jungle | tundra | desert | house | <feeling> <environment>
+<action> ::= running | jumped | skidded | flipped
+<feeling> ::= dark | cold | foggy | sweltering | misty
