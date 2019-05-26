@@ -91,7 +91,7 @@ public class IntTree {
            return 1;
        } else {
            int leftNulls = _countEmpty(root.left);
-           int rightNulls = _countEmpty(root.right);
+           //int rightNulls = _countEmpty(root.right);
            return leftNulls + rightNulls;
        }
    }

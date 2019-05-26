@@ -8,17 +8,17 @@ public class IntTreeClient {
         tree.overallRoot.left.left = new IntTree.IntTreeNode(22);
         tree.overallRoot.right.right = new IntTree.IntTreeNode(9);
         
+        System.out.println("Preorder");
         tree.printPreorder();
         System.out.println();
+        
+        System.out.println("Postorder");
         tree.printPostorder();
         System.out.println();
+        
+        System.out.println("In-order");
         tree.printInOrder();
         
         System.out.println();
-        
-        tree.printSideways();
-        System.out.println();
-        tree.bubbleLeft();
-        tree.printSideways();
     }
 }
