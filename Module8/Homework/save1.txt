@@ -1,0 +1,24 @@
+S:
+It is mobile.
+S:
+It is smaller.
+S:
+It didn't use to be able to play games.
+G:
+It is a cell phone.
+G:
+It is a laptop.
+S:
+It's sole purpose is to play games.
+S:
+It's made by Sony.
+G:
+PlayStation
+S:
+It's made by Microsoft.
+G:
+Xbox
+G:
+Nintendo Switch
+G:
+Desktop Computer

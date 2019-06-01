@@ -1,0 +1,27 @@
+1. State your name, the course (CIS143), the assignment, and the date.
+    Bryan Hyland
+    CIS143 Java 2
+    Hot or Cold
+    29May19
+
+2. How long in hours did you spend on the assignment?
+    Roughly 4.5 - 5 hours.
+
+3. What key Java features or Object Oriented concepts did this help you understand (or review, if you already have some programming experience)?
+    Binary Tree and x=(change(x)) recursion.
+
+4. What resources did you use to solve this? (Textbook, class information, tutors, office hours, websites, other?) Provide URLs to websites if used.
+    Class information, practiceIt! problems (writeTree and readTree).
+
+5. What vagueness can you identify in the specification or missing checks in the tests provided? What testing or validation did you do to see if your program behaved as expected?
+    There was nothing that was vague or missing. I used the given HotOrColdConsole and HotOrColdSwing classes.
+
+6. What parts of your code could use improvement or disappointed you (what work didn’t you get done, that more time would have enabled you to finish, or what bugs did you not resolve)?
+    I'm sure there are a few things that could be changed, but overall I'm happy with the work I did. The one thing I would change is the way I had to change the nodes to the previous
+    node for the tree to stay in tact in all situations. When I had a verison that didn't do that, it would only return that node and any nodes below it at the end of the game.
+
+7. Note any remaining questions you may have on the assigned items or the material from the chapter here.
+    No remaining questions.
+
+8. Which part of your work on this are you the most pleased about?
+    The custom game that I created.

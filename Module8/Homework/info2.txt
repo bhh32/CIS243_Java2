@@ -1,0 +1,22 @@
+S:
+It is an animal
+S:
+It can fly
+G:
+bird
+S:
+It has a tail
+G:
+mouse
+G:
+spider
+S:
+It has wheels
+G:
+bicycle
+S:
+It is nice
+G:
+tutor
+G:
+teacher

@@ -1,0 +1,34 @@
+S:
+It uses the force
+S:
+They have not become a Jedi or Sith
+G:
+Untrained Child
+S:
+It uses the darkside of the force
+G:
+Sith
+G:
+Jedi -- End Of Force Questioning
+S:
+It is metal
+G:
+droid -- End of Metal Questioning
+S:
+It uses magic
+S:
+It is from the realm of the Elves
+G:
+Elf
+G:
+wizard
+S:
+It is taller
+S:
+It is made from a fallen Elf
+G:
+Orc
+G:
+human
+G:
+hobbit

@@ -1,0 +1,14 @@
+S:
+It uses the force
+G:
+Jedi
+S:
+It is metal
+G:
+droid
+S:
+It uses magic
+G:
+wizard
+G:
+hobbit

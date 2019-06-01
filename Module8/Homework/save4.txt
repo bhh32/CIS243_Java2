@@ -1,0 +1,22 @@
+S:
+It uses the force
+S:
+It uses the darkside of the force
+G:
+Sith
+S:
+They have not become a Jedi or Sith
+G:
+Untrained Child
+G:
+Jedi
+S:
+It is metal
+G:
+droid
+S:
+It uses magic
+G:
+wizard
+G:
+hobbit

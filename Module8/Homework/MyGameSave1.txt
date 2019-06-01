@@ -1,0 +1,6 @@
+S:
+It is mobile.
+S:
+It is made to only play music.
+G:
+mp3 player

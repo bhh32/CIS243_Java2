@@ -1,0 +1,14 @@
+S:
+It uses the force
+S:
+It turned to the dark side
+G:
+Sith Lord
+G:
+Jedi
+S:
+It is metal
+G:
+droid
+G:
+hobbit

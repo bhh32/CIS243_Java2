@@ -1,0 +1,20 @@
+Welcome to Hot or Cold!
+Shall I recall a previous game? y
+Enter a file name: info1.txt
+
+Think of an item, and I will guess it.
+
+It uses the force. Hot or Cold? Cold
+It is metal. Hot or Cold? Hot
+It is a droid. Hot or Cold? Hot
+I won! Thanks for the game.
+Play again? y
+
+It uses the force. Hot or Cold? Hot
+It is a Jedi. Hot or Cold? Cold
+I lose. What is your item? Sith Lord
+Type a statement that distinguishes Sith Lord from Jedi: It turned to the dark side
+Is "It turned to the dark side" Hot or Cold for Sith Lord? Hot
+Play again? n
+Shall I remember this game? y
+Enter a file name: info1_after.txt

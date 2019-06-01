@@ -1,0 +1,30 @@
+S:
+It is mobile.
+S:
+It is a type of computer.
+G:
+Laptop
+S:
+It's used mainly for playing video games.
+S:
+It's from Sony.
+G:
+PlayStation
+S:
+It's from Microsoft.
+G:
+Xbox
+S:
+It's from Nintendo.
+G:
+Nintendo Switch
+G:
+Google Stadia
+S:
+It didn't use to be able to play music.
+G:
+cell phone
+G:
+mp3 player
+G:
+A Desktop Computer

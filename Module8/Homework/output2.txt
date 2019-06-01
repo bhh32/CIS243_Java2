@@ -1,0 +1,23 @@
+Welcome to Hot or Cold!
+Shall I recall a previous game? y
+Enter a file name: info2.txt
+
+Think of an item, and I will guess it.
+
+It is an animal. Hot or Cold? Hot
+It can fly. Hot or Cold? Cold
+It has a tail. Hot or Cold? Hot
+It is a mouse. Hot or Cold? Cold
+I lose. What is your item? Cat
+Type a statement that distinguishes Cat from mouse: It chases mice
+Is "It chases mice" Hot or Cold for Cat? Hot
+Play again? y
+
+It is an animal. Hot or Cold? Hot
+It can fly. Hot or Cold? Cold
+It has a tail. Hot or Cold? Hot
+It chases mice. Hot or Cold? Hot
+It is a Cat. Hot or Cold? Hot
+I won! Thanks for the game.
+Play again? n
+Shall I remember this game? n

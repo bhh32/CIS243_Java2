@@ -1,0 +1,46 @@
+S:
+It is mobile.
+S:
+It is a mobile computer.
+G:
+cell phone
+S:
+It is a vehicle.
+S:
+It is a motor vehicle.
+G:
+truck
+G:
+scooter
+G:
+laptop
+S:
+It is solely for playing games.
+S:
+It is made by Sony.
+G:
+PlayStation
+S:
+It is made by Nintendo.
+G:
+Nintendo Switch
+S:
+It is made by Sega.
+G:
+Dreamcast
+G:
+Xbox
+S:
+It is not a computer.
+S:
+It is for relaxation.
+G:
+bed
+G:
+TV
+S:
+It is made of special components.
+G:
+Server
+G:
+Desktop
