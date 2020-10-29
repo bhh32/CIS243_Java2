@@ -71,6 +71,32 @@ public class LinkedIntList {
       
       return first;
    }
+   
+   public void reorder() {
+   ListNode temp = front;
+   
+   while (temp.next != null) {
+      if (temp.next.data <= front.data) {
+         ListNode frontTemp = front;
+         ListNode tempNext = temp.next.next;
+         
+         if (front.next == temp.next) {
+            temp.next.next = frontTemp;
+            front = temp.next;
+            temp.next = tempNext;
+         }
+         else {
+            
+            front = temp.next;
+            front.next = frontTemp;
+            temp.next = tempNext;
+         }
+      }
+      else {
+         temp = temp.next;   
+      }
+   }
+}
 
 
    // add your code here
@@ -113,17 +139,27 @@ public class LinkedIntList {
    
    public static void main (String[] args) {
       LinkedIntList list = new LinkedIntList();
+      list.add(0);
+      list.add(-3);
       list.add(3);
-      list.add(2);
+      list.add(-5);
+      list.add(7);
+      list.add(-9);
+      list.add(-10);
       list.add(10);
-      list.add(5);
+      list.add(-11);
+      list.add(-11);
+      list.add(-11);
       list.add(12);
-      list.add(42);
-      list.add(51);
+      list.add(-15);
       
-      System.out.println(list.sum());
-      list.nodeFlip();
+      //System.out.println(list.sum());
+      //list.nodeFlip();
       System.out.println(list); // output: 2, 3, 5, 10, 12
+      
+      list.reorder();
+      
+      System.out.println(list);
    }
 
 }

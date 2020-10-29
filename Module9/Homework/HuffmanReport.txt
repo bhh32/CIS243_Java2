@@ -1,15 +1,36 @@
 1. State your name, the course (CIS143), the assignment, and the date.
+   
+   Bryan Hyland
+   Secret Message - HW Module 9
+   3Jun19
 
 2. How long in hours did you spend on the assignment?
 
+   Approximately 4 hours.
+
 3. What key Java features or Object Oriented concepts did this help you understand (or review, if you already have some programming experience)?
+
+   I used recursion, the binary tree data structure, for loops, and while loops. This exercise definately helped me to understand recursion and binary
+   trees much better.
 
 4. What resources did you use to solve this? (Textbook, class information, tutors, office hours, websites, other?) Provide URLs to websites if used.
 
+   No outside resources were used.
+
 5. What vagueness can you identify in the specification or missing checks in the tests provided? What testing or validation did you do to see if your program behaved as expected?
+
+   It seems like it should've been clear from the beginning, but for some reason I didn't understand at first that the binary tree was supposed to be
+   used to translate the *.code files back into text using the binary in them as the pathways to the characters.
 
 6. What parts of your code could use improvement or disappointed you (what work didn’t you get done, that more time would have enabled you to finish, or what bugs did you not resolve)?
 
+   I'm sure there can be improvements somewhere, but I'm actually super happy about the solution I came up with.
+
 7. Note any remaining questions you may have on the assigned items or the material from the chapter here.
 
+   No remaining questions. Once you pointed out I was supposed to use the binary tree for translate the soulution was simple.
+
 8. Which part of your work on this are you the most pleased about?
+
+   I'm extremely excited how compact and elegant my code is for this assignment. I thought it was going to much harder than it really was
+   and take much more code than it did.

@@ -3,10 +3,30 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.io.PrintStream;
 
+/*
+ * Author:     Bryan Hyland
+ * Class:      CIS 143 - Java 2
+ * Date:       3June19
+ * Assignment: Secret Message (Homework Module 9)
+ * 
+ * This class creates a BinaryTree based upon a text files'
+ * character frequencies or, if the text file has already
+ * been compressed, its compressed *.code file. The class
+ * is also responsible for decompressing and translating
+ * the *.code file to a *.new human readable file.
+ */
+
 public class HuffmanCode {
+   // Used to set the root nodes' data to null
    private static char defaultChar = '\0';
    private HuffmanNode overallRoot;
    
+   /*
+    * This constructor uses a PriorityQueue to place new HuffmanNodes
+    * into the proper order using HuffmanCompression based upon the
+    * frequencies of characters in a text file. It then places them
+    * in a binary tree data structure.
+    */
    public HuffmanCode(int[] frequencies) {
       // Create the priority queue
       Queue<HuffmanNode> treeQ = new PriorityQueue<HuffmanNode>();
@@ -23,19 +43,13 @@ public class HuffmanCode {
       // Set the overallRoot PriorityQueue element that is left
       // after all of the nodes have been processed.
       overallRoot = buildTree(treeQ);
-      
-      System.out.println();
    }
-     
+   
+   /* This constructor is a gatekeeper to the overloaded builtTree 
+    * method that takes a Scanner, and two HuffmanNode objects as 
+    * parameters.
+    */  
    public HuffmanCode(Scanner input) {
-      /*
-         This constructor should initialize a new HuffmanCode 
-         object by reading in a previously constructed code from 
-         a .code file. You may assume the Scanner is not null and 
-         is attached to a legal, existing file in standard format. 
-         Make sure to read entire lines of input using calls on 
-         Scanner's nextLine.
-      */
       overallRoot = buildTree(input, null, new HuffmanNode(defaultChar, -1));
    }
    
@@ -48,7 +62,8 @@ public class HuffmanCode {
       return currentQ.peek();
    }
    
-   // Builds a tree off of a *.code file to decompress the file.
+   // Builds a tree off of a *.code file that will be used to
+   // decompress the binary back to text.
    private HuffmanNode buildTree(Scanner input, HuffmanNode node, HuffmanNode root) {
       if (!input.hasNextLine()) {
          return null;
@@ -105,6 +120,8 @@ public class HuffmanCode {
       // Recurse building the tree using node
       node = buildTree(input, node, root);
       
+      // Ensures that the root node will always be the node
+      // that is first created first and stays the root.
       return root;
    }
    
@@ -164,39 +181,50 @@ public class HuffmanCode {
       }
    }
    
-   // *NOTE: USE output.write() to print out the leaf!
-   // *NOTE: Consider using loops instead of loops, but not required!
+   /*
+    * Reads the individual bits of the *.code file in the
+    * BitInputStream param and follows them like breadcrumbs to 
+    * the data node. Once it arrives at the data node, it prints 
+    * the data using the PrintStream param, resets the decoder 
+    * HuffmanNode back to overallRoot to start down the next path.
+    */
    public void translate(BitInputStream input, PrintStream output) {
-      /*
-         This method reads individual bits from the BitInputStream 
-         and writes the corresponding characters to the output. It 
-         reads until it reaches the end of the BitInputStream. You 
-         may assume that the input stream contains a legal encoding 
-         of characters for this tree's huffman code. You use the 
-         huffman code currently specified in your instance (either 
-         created by a constructor or loaded from a file by a 
-         constructor). See the API for BitInputStream below for 
-         information on how to access this stream. You may assume 
-         the PrintStream is valid and writable.
-      */
-      String character = "";
-      int count = 0;
+      HuffmanNode decoder = overallRoot;
+      
       while (input.hasNextBit()) {
-         char print = (char) input.nextBit();
-         System.out.print(print);
+         int path = input.nextBit();
+         
+         if (path == 0) {
+            decoder = decoder.zero;
+         }
+         else {
+            decoder = decoder.one;
+         }
+         
+         if (decoder.zero == null && decoder.one == null) {
+            output.print(decoder.getData());
+            decoder = overallRoot;
+         }
       }
    }
    
+   // This class is the individual nodes for the HuffmanCode tree
    private class HuffmanNode implements Comparable<HuffmanNode> {
       private final char data;
       private final int freq;
       public HuffmanNode zero; // Left
       public HuffmanNode one;  // Right
       
+      // pre: takes in data and frequency parameters
+      // post: creates a new HuffmanNode with no leaves.
       public HuffmanNode(char data, int freq) {
          this(data, freq, null, null);
       }
-            
+      
+      // pre: takes in data, frequency, and two HuffmanNodes for
+      //      each branch as parameters.
+      // post: creates a new HuffmanNode object based upon the
+      //      data in the passed parameters.
       public HuffmanNode(char data, int freq, HuffmanNode zero, 
                          HuffmanNode one) {
          this.data = data;
@@ -217,14 +245,15 @@ public class HuffmanCode {
       // Compares two HuffmanNodes based on their frequency
       @Override
       public int compareTo(HuffmanNode other) {
+         // If other.freq is larger
          if (other.freq > this.freq) {
             return -1;
          }
+         // If the freqs are equal
          else if (other.freq == this.freq) {
             return 0;
          }
-         // If the other freq is less than this
-         // return 1
+         // If the this freq is greater
          else {
             return 1;
          }

@@ -138,5 +138,8 @@ public class LinkedListDemo {
       list.set(0, 24);
       list.set(2, -42);
       System.out.println(list);
+      
+      list.reorder();
+      System.out.println(list);
    }
 }
